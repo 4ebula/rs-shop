@@ -1,0 +1,62 @@
+$grey: #f7f8fa;
+$white: #fff;
+$black: #1a1a1a;
+// $light-grey: #efefef;
+// $dark-grey: #4f4f4f;
+// $blue: #2f80ed;
+// $green: #27ae60;
+// $red: #e85757;
+// $yellow: #f2c94c;
+// $light-black: #333;
+// $mild-grey: #f2f2f2;
+
+@mixin typography($size: 16, $weight: 400, $line: 32, $color: $black, $family: "Arial", $spacing: 0px) {
+  font: {
+    size: $size / 16 * 1rem;
+    weight: $weight;
+    family: $family, sans-serif;
+  }
+
+  line-height: $line / 16 * 1rem;
+  letter-spacing: $spacing;
+  color: $color;
+}
+
+@mixin flexCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// @mixin boxShadow($color: rgba(0, 0, 0, 0.25)) {
+//   filter: drop-shadow(2px 0px 4px $color);
+// }
+
+// .btn {
+//   color: $white;
+//   background-color: $blue;
+//   border: none;
+//   outline: none;
+//   cursor: pointer;
+//   font-family: "Roboto";
+
+//   &:active {
+//     box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.219);
+//     background-size: 60%;
+//   }
+// }
+
+// .btn_filled {
+//   border-radius: 5px;
+//   @include boxShadow($blue);
+// }
+
+// .btn_hollow {
+//   text-decoration: underline;
+//   background-color: transparent;
+//   @include typography(12, 400, 14, "Roboto", $blue);
+
+//   &:active {
+//     box-shadow: none;
+//   }
+// }
