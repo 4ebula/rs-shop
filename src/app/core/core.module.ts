@@ -8,6 +8,6 @@ import { HeaderComponent } from './components/header/header.component';
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, CategoryNavigationComponent],
   imports: [CommonModule, InlineSVGModule.forRoot()],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, FooterComponent],
 })
 export class CoreModule {}

@@ -1,0 +1,128 @@
+@import "../../../../variables.scss";
+
+:host {
+  background-color: $grey;
+  display: block;
+  width: 100%;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  width: 80%;
+  margin: 0 auto;
+  border-top: 1px solid #d5d7db66;
+
+  li,
+  li > a {
+    @include typography(14, 400, 18, #000, Arial);
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    transition: ease-in 0.2s;
+
+    span {
+      display: block;
+      height: 24px;
+    }
+  }
+
+  .viber,
+  .telegram,
+  .mailto,
+  .chat {
+    cursor: pointer;
+
+    &:hover {
+      span,
+      a {
+        color: $hover-text;
+      }
+    }
+  }
+
+  .viber span {
+    color: #7c53a6;
+  }
+
+  .telegram span {
+    color: transparent;
+  }
+}
+
+.social {
+  height: 60px;
+  justify-content: center;
+
+  li {
+    position: relative;
+    @include flexCentered;
+    width: 40px;
+    height: 40px;
+    margin: 0 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px #1723260d;
+    overflow: hidden;
+
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .icon_vk {
+    color: #447dbd;
+
+    &:hover {
+      background-color: #447dbd;
+      color: #fff;
+    }
+  }
+
+  .icon_facebook {
+    color: #4469b0;
+
+    &:hover {
+      background-color: #4469b0;
+      color: #fff;
+    }
+  }
+
+  .icon_instagram {
+    color: transparent;
+
+    &:hover {
+      color: white;
+      background-image: url("../../../../assets/icons/instaback.png");
+      background-position: top left;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  .icon_youtube {
+    color: #ff2638;
+
+    &:hover {
+      background-color: #ff2638;
+      color: #fff;
+    }
+  }
+
+  .icon_ok {
+    color: #fa9019;
+
+    &:hover {
+      background-color: #fa9019;
+      color: #fff;
+    }
+  }
+}
