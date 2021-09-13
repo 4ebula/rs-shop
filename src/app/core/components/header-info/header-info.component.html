@@ -1,0 +1,45 @@
+<nav>
+  <div class="icon">Минск</div>
+  <ul>
+    <li><a href="">Оплата по частям</a></li>
+    <li><a href="">Бонусная программа</a></li>
+    <li><a href="" class="more">Еще</a></li>
+  </ul>
+  <ul>
+    <li class="contact_viber">
+      <span [inlineSVG]="'../../../../assets/icons/viber.svg'"></span>
+      <a href="">Viber</a>
+    </li>
+    <li>
+      <span [inlineSVG]="'../../../../assets/icons/a1.svg'"></span>
+      <span href="">+375 29 111 11 11</span>
+    </li>
+    <li [class.opened-dropdown]="iftrue"><button (click)="openDropdown()" class="more">Еще</button></li>
+  </ul>
+  <div class="time">контакт-центр <br>с 8:00 до 22:00</div>
+</nav>
+<div class="dropdown" *ngIf="iftrue">
+  <ul>
+    <li><span [inlineSVG]="'./assets/icons/life.svg'"></span>+375 25 502 10 21</li>
+    <li><span [inlineSVG]="'./assets/icons/home.svg'"></span>+375 17 302 10 21</li>
+    <li class="telegram dropdown_hightlight">
+      <span [inlineSVG]="'./assets/icons/telegram.svg'"></span>
+      <a href="">Telegram</a>
+    </li>
+    <li class="mailto dropdown_hightlight">
+      <span [inlineSVG]="'./assets/icons/mailto.svg'"></span>
+      <a href="mailto:21@21vek.by" target="_blank">Почта</a>
+    </li>
+    <li class="phone dropdown_hightlight">
+      <span [inlineSVG]="'./assets/icons/phone.svg'"></span>
+      <a href="">Заказать звонок</a>
+    </li>
+    <li class="chat dropdown_hightlight">
+      <span [inlineSVG]="'./assets/icons/chat.svg'"></span>
+      <a href="">Написать нам</a>
+    </li>
+    <li class="dropdown_hightlight">
+      <a href="">Контакты</a>
+    </li>
+  </ul>
+</div>

@@ -1,24 +1,5 @@
-<nav>
-  <div class="icon">Минск</div>
-  <ul>
-    <li><a href="">Оплата по частям</a></li>
-    <li><a href="">Бонусная программа</a></li>
-    <li><a href="">Еще</a></li>
-  </ul>
-  <ul>
-    <li class="contact_viber">
-      <span [inlineSVG]="'../../../../assets/icons/viber.svg'"></span>
-      <a href="">Viber</a>
-    </li>
-    <li>
-      <span [inlineSVG]="'../../../../assets/icons/a1.svg'"></span>
-      <a href="">+375 29 111 11 11</a>
-    </li>
-    <li><a href="">Еще</a></li>
-  </ul>
-  <div class="time">контакт-центр <br>с 8:00 до 22:00</div>
-</nav>
-<div class="sectwo">
+<app-header-info></app-header-info>
+<div>
   <div class="logo"><a href=""></a></div>
   <button class="btn btn_header">
     <div></div>
@@ -35,7 +16,7 @@
     <span>Аккаунт</span>
   </button>
   <button class="btn btn_header btn_cart">
-    <div></div>
+    <div [inlineSVG]="'../../../../assets/icons/cart.svg'"></div>
     <span>Корзина</span>
   </button>
 </div>
