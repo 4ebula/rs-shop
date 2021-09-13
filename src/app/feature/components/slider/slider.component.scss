@@ -1,0 +1,25 @@
+@import "../../../../variables.scss";
+
+:host {
+  display: block;
+  position: relative;
+  width: 722px;
+  height: 362px;
+  box-sizing: border-box;
+  margin: 0;
+  overflow-x: hidden;
+  border: 1px solid #e2e2e2;
+
+  .slider {
+    display: flex;
+    width: fit-content;
+    transition-property: margin-left;
+    transition-timing-function: ease-in-out;
+
+    & > div {
+      width: 720px;
+      height: 360px;
+      background-size: cover;
+    }
+  }
+}
