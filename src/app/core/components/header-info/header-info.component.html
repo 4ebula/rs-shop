@@ -1,8 +1,8 @@
 <nav>
   <div class="icon">Минск</div>
   <ul>
-    <li><a href="">Оплата по частям</a></li>
-    <li><a href="">Бонусная программа</a></li>
+    <li><a routerLink="/payment">Оплата по частям</a></li>
+    <li><a routerLink="/bonus">Бонусная программа</a></li>
     <li><a href="" class="more">Еще</a></li>
   </ul>
   <ul>
@@ -14,17 +14,17 @@
       <span [inlineSVG]="'../../../../assets/icons/a1.svg'"></span>
       <span href="">+375 29 111 11 11</span>
     </li>
-    <li [class.opened-dropdown]="iftrue"><button (click)="openDropdown()" class="more">Еще</button></li>
+    <li [class.opened-dropdown]="isOpened"><button (click)="openDropdown()" class="more">Еще</button></li>
   </ul>
   <div class="time">контакт-центр <br>с 8:00 до 22:00</div>
 </nav>
-<div class="dropdown" *ngIf="iftrue">
+<div class="dropdown" *ngIf="isOpened">
   <ul>
     <li><span [inlineSVG]="'./assets/icons/life.svg'"></span>+375 25 502 10 21</li>
     <li><span [inlineSVG]="'./assets/icons/home.svg'"></span>+375 17 302 10 21</li>
     <li class="telegram dropdown_hightlight">
       <span [inlineSVG]="'./assets/icons/telegram.svg'"></span>
-      <a href="">Telegram</a>
+      <a href="https://telegram.com" target="_blank">Telegram</a>
     </li>
     <li class="mailto dropdown_hightlight">
       <span [inlineSVG]="'./assets/icons/mailto.svg'"></span>
@@ -39,7 +39,7 @@
       <a href="">Написать нам</a>
     </li>
     <li class="dropdown_hightlight">
-      <a href="">Контакты</a>
+      <a routerLink="/contacts">Контакты</a>
     </li>
   </ul>
 </div>

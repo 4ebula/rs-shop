@@ -6,10 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./header-info.component.scss'],
 })
 export class HeaderInfoComponent {
-  iftrue: boolean = false;
+  isOpened: boolean = false;
 
   openDropdown(): void {
-    this.iftrue = !this.iftrue;
-    console.log('Hi There');
+    this.isOpened = !this.isOpened;
   }
 }
