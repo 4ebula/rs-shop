@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LINKS } from './constants';
+import { ISliderInfo } from '../../models/slider-info.model';
+import { SLIDER_INFO } from './constants';
 
 @Component({
   selector: 'app-slider',
@@ -16,22 +17,32 @@ export class SliderComponent implements OnInit {
     'transition-duration.ms': 0,
   };
 
-  links = LINKS;
+  sliderInfo: ISliderInfo[] = SLIDER_INFO;
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.transitionSettings['transition-duration.ms'] = 700;
-      this.transitionSettings['margin-left.px'] = -720;
-    }, 5000);
+    setInterval(() => this.delayTransition(), 5000);
   }
 
   transitionEnd(): void {
-    this.slidesNum = this.slidesNum.map((e, _, arr) => {
-      let temp = e + 1;
-      if (temp > arr.length) temp = 1;
-      return temp;
-    });
+    const elem = this.slidesNum.splice(-1, 1);
+    this.slidesNum = [...elem, ...this.slidesNum];
     this.transitionSettings['transition-duration.ms'] = 0;
     this.transitionSettings['margin-left.px'] = 0;
   }
+
+  delayTransition(): void {
+    this.transitionSettings['transition-duration.ms'] = 700;
+    this.transitionSettings['margin-left.px'] = -720;
+  }
+
+  colorSwitch = (slide: number): string => {
+    if (slide === 1) return '#36c';
+    return 'inherit';
+  };
+
+  changeSlide = (slide: number): void => {
+    const tempArray = Array.from({ length: this.amountOfSlides }, (_, i) => i + 1);
+    const remainingArray = tempArray.splice(tempArray.length - slide);
+    this.slidesNum = [...remainingArray, ...tempArray];
+  };
 }
