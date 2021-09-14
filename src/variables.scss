@@ -1,7 +1,9 @@
 $grey: #f7f8fa;
 $white: #fff;
-$black: #1a1a1a;
+$text-black: #1a1a1a;
+$text-grey: #909399;
 $hover-text: #d62761;
+$hover-background: #fcedf2;
 // $light-grey: #efefef;
 // $dark-grey: #4f4f4f;
 // $blue: #2f80ed;
@@ -11,7 +13,7 @@ $hover-text: #d62761;
 // $light-black: #333;
 // $mild-grey: #f2f2f2;
 
-@mixin typography($size: 16, $weight: 400, $line: 32, $color: $black, $family: "Arial", $spacing: 0px) {
+@mixin typography($size: 16, $weight: 400, $line: 32, $color: $text-black, $family: "Arial", $spacing: 0px) {
   font: {
     size: $size / 16 * 1rem;
     weight: $weight;

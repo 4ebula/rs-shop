@@ -8,7 +8,10 @@ export class ClosePopupDirective {
 
   @HostListener('document: click', ['$event.target'])
   onClick(target: HTMLElement): void {
-    if (!this.elementRef.nativeElement.contains(target) && !target.className.match('more')) {
+    if (
+      !this.elementRef.nativeElement.contains(target) &&
+      !target.classList.contains('btn_activator')
+    ) {
       this.appClosePopup.emit();
     }
   }

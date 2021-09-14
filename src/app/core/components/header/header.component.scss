@@ -2,6 +2,7 @@
 
 :host {
   display: block;
+  position: relative;
   background-color: $grey;
   width: 100%;
   box-sizing: border-box;
@@ -30,20 +31,6 @@
       background: {
         image: url("../../../../assets/icons/logo.svg");
         repeat: no-repeat;
-      }
-    }
-
-    .btn_header {
-      border: 1px solid #d5d7db;
-      border-radius: 40px;
-      width: 159px;
-      height: 40px;
-      transition: 0.2s ease;
-
-      &:hover {
-        background-color: #fff;
-        border-color: #fff;
-        box-shadow: 0 2px 4px #1723260d;
       }
     }
 
@@ -148,7 +135,7 @@
         left: 18px;
         width: 20px;
         height: 20px;
-        color: #1a1a1a;
+        color: $text-black;
       }
 
       &:active {
@@ -163,4 +150,26 @@
       }
     }
   }
+}
+
+.btn_header {
+  border: 1px solid #d5d7db;
+  border-radius: 40px;
+  width: 159px;
+  height: 40px;
+  transition: 0.2s ease;
+
+  &:hover {
+    background-color: #fff;
+    border-color: #fff;
+    box-shadow: 0 2px 4px #1723260d;
+  }
+}
+
+.btn.activated,
+.btn.activated:hover {
+  border-color: transparent;
+  background-color: #ebedf0;
+  color: #909399;
+  box-shadow: none;
 }

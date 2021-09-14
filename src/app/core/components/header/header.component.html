@@ -1,7 +1,7 @@
 <app-header-info></app-header-info>
 <div>
   <div class="logo" [routerLink]="['/']"></div>
-  <button class=" btn btn_header">
+  <button class="btn btn_header btn_activator" [class.activated]="isCategoriesOpened" (click)="showCategories($event)">
     <div></div>
     <span>Каталог товаров</span>
   </button>
@@ -21,3 +21,4 @@
   </button>
 </div>
 <app-category-navigation></app-category-navigation>
+<app-catalog-popup *ngIf="isCategoriesOpened" (appClosePopup)="closePopup()"></app-catalog-popup>

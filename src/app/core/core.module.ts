@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { InlineSVGModule } from 'ng-inline-svg';
+import { CatalogPopupComponent } from './components/catalog-popup/catalog-popup.component';
 import { CategoryNavigationComponent } from './components/category-navigation/category-navigation.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderInfoComponent } from './components/header-info/header-info.component';
@@ -15,6 +16,7 @@ import { ClosePopupDirective } from './directives/close-popup.directive';
     CategoryNavigationComponent,
     HeaderInfoComponent,
     ClosePopupDirective,
+    CatalogPopupComponent,
   ],
   imports: [CommonModule, CoreRouterModule, InlineSVGModule.forRoot()],
   exports: [HeaderComponent, FooterComponent],

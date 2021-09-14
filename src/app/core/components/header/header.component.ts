@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { InlineSVGModule } from 'ng-inline-svg';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +6,15 @@ import { InlineSVGModule } from 'ng-inline-svg';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  inlineSVG!: InlineSVGModule;
+  isCategoriesOpened: boolean = false;
+
+  showCategories(event: Event): void {
+    this.isCategoriesOpened = true;
+    console.log('Clicked');
+    console.log(event.target);
+  }
+
+  closePopup(): void {
+    this.isCategoriesOpened = false;
+  }
 }

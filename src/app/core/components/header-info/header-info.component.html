@@ -14,7 +14,9 @@
       <span [inlineSVG]="'../../../../assets/icons/a1.svg'"></span>
       <span href="">+375 29 111 11 11</span>
     </li>
-    <li [class.opened-dropdown]="isOpened"><button (click)="openDropdown()" class="more">Еще</button></li>
+    <li [class.opened-dropdown]="isOpened">
+      <button (click)="openDropdown()" class="more btn_activator">Еще</button>
+    </li>
   </ul>
   <div class="time">контакт-центр <br>с 8:00 до 22:00</div>
 </nav>
