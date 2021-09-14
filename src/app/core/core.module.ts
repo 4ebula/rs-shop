@@ -6,6 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderInfoComponent } from './components/header-info/header-info.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CoreRouterModule } from './core-routing.module';
+import { ClosePopupDirective } from './directives/close-popup.directive';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { CoreRouterModule } from './core-routing.module';
     FooterComponent,
     CategoryNavigationComponent,
     HeaderInfoComponent,
+    ClosePopupDirective,
   ],
   imports: [CommonModule, CoreRouterModule, InlineSVGModule.forRoot()],
   exports: [HeaderComponent, FooterComponent],

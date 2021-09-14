@@ -11,4 +11,8 @@ export class HeaderInfoComponent {
   openDropdown(): void {
     this.isOpened = !this.isOpened;
   }
+
+  closeDropdown(): void {
+    this.isOpened = false;
+  }
 }

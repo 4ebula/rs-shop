@@ -18,7 +18,7 @@
   </ul>
   <div class="time">контакт-центр <br>с 8:00 до 22:00</div>
 </nav>
-<div class="dropdown" *ngIf="isOpened">
+<div class="dropdown" *ngIf="isOpened" (appClosePopup)="closeDropdown()">
   <ul>
     <li><span [inlineSVG]="'./assets/icons/life.svg'"></span>+375 25 502 10 21</li>
     <li><span [inlineSVG]="'./assets/icons/home.svg'"></span>+375 17 302 10 21</li>
