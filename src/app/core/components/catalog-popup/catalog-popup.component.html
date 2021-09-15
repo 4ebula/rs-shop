@@ -19,7 +19,7 @@
         <div class="catalog-items_list_item">
           <ul>
             <li *ngFor="let subCat of currentCategory.subCategories">
-              <a routerLink="/{{ subCat.id }}">{{ subCat.name }}</a>
+              <a routerLink="/category/{{ subCat.id }}">{{ subCat.name }}</a>
             </li>
           </ul>
         </div>

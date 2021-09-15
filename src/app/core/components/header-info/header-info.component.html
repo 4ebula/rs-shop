@@ -1,18 +1,18 @@
 <nav>
   <div class="icon">Минск</div>
   <ul>
-    <li><a routerLink="/payment">Оплата по частям</a></li>
-    <li><a routerLink="/bonus">Бонусная программа</a></li>
-    <li><a href="" class="more">Еще</a></li>
+    <li><a routerLink="/info/payment">Оплата по частям</a></li>
+    <li><a routerLink="/info/bonus">Бонусная программа</a></li>
+    <li><a href="/info" class="more">Еще</a></li>
   </ul>
   <ul>
     <li class="contact_viber">
       <span [inlineSVG]="'../../../../assets/icons/viber.svg'"></span>
-      <a href="">Viber</a>
+      <a href="https://viber.com">Viber</a>
     </li>
     <li>
       <span [inlineSVG]="'../../../../assets/icons/a1.svg'"></span>
-      <span href="">+375 29 111 11 11</span>
+      <span>+375 29 111 11 11</span>
     </li>
     <li [class.opened-dropdown]="isOpened">
       <button (click)="openDropdown()" class="more btn_activator">Еще</button>
