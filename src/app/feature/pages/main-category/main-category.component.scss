@@ -1,0 +1,78 @@
+@import "../../../../variables.scss";
+
+:host {
+  @include mainHost;
+}
+
+.category-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2.2%;
+}
+
+.breadcrumbs {
+  height: 15px;
+
+  ul {
+    display: flex;
+
+    li {
+      margin-right: 5px;
+      a {
+        @include typography(11, 400, 11, #717171);
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:hover {
+          color: #bc1242;
+        }
+      }
+    }
+  }
+}
+
+.categories {
+  margin-top: 18px;
+
+  h3 {
+    @include typography(32, 700, 32, #000);
+  }
+}
+
+.goods {
+  width: 80%;
+  display: flex;
+  margin: 20px 0;
+
+  & > div {
+    height: 180px;
+    width: 32%;
+    border: 1px solid #e2e2e2;
+    background-color: rgb(255, 220, 220);
+  }
+}
+
+.subcategories {
+  width: 80%;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      width: 32%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+
+      a {
+        @include typography(14, 700, 16, #000);
+        text-decoration: underline;
+
+        &:hover {
+          color: #bc1242;
+        }
+      }
+    }
+  }
+}
