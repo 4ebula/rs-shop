@@ -8,10 +8,8 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isCategoriesOpened: boolean = false;
 
-  showCategories(event: Event): void {
+  showCategories(): void {
     this.isCategoriesOpened = true;
-    console.log('Clicked');
-    console.log(event.target);
   }
 
   closePopup(): void {

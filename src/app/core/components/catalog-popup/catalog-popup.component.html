@@ -1,14 +1,11 @@
 <div class="catalog">
   <div class="catalog-categories">
     <ul>
-      <li>Бытовая техника</li>
-      <li>Smart</li>
-      <li>Mebel</li>
-      <li>DOM</li>
+      <li *ngFor="let category of categories" [attr.catId]="category.id">{{ category.name }}</li>
     </ul>
   </div>
   <div class="catalog-items">
-    <h3>Бытовая техника</h3>
+    <h3>{{ currentCategory.name }}</h3>
     <div class="catalog-items_brands">
       <ul>
         <li>Tefal</li>
@@ -20,66 +17,16 @@
     <div class="catalog-items_lists">
       <div class="catalog-items_list">
         <div class="catalog-items_list_item">
-          <h4>Osvesheneie</h4>
           <ul>
-            <li>lust</li>
-            <li>torsh</li>
-          </ul>
-        </div>
-        <div class="catalog-items_list_item">
-          <h4>Osvesheneie</h4>
-          <ul>
-            <li>lust</li>
-            <li>torsh</li>
-          </ul>
-        </div>
-        <div class="catalog-items_list_item">
-          <h4>Osvesheneie</h4>
-          <ul>
-            <li>lust</li>
-            <li>torsh</li>
-          </ul>
-        </div>
-        <div class="catalog-items_list_item">
-          <h4>Osvesheneie</h4>
-          <ul>
-            <li>lust</li>
-            <li>torsh</li>
-          </ul>
-        </div>
-        <div class="catalog-items_list_item">
-          <h4>Osvesheneie</h4>
-          <ul>
-            <li>lust</li>
-            <li>torsh</li>
+            <li *ngFor="let subCat of currentCategory.subCategories">
+              <a routerLink="/{{ subCat.id }}">{{ subCat.name }}</a>
+            </li>
           </ul>
         </div>
       </div>
-      <div class="catalog-items_list">
-        <div class="catalog-items_list_item">
-          <h4>Osvesheneie</h4>
-          <ul>
-            <li>lust</li>
-            <li>torsh</li>
-          </ul>
-        </div>
-        <div class="catalog-items_list_item">
-          <h4>Osvesheneie</h4>
-          <ul>
-            <li>lust</li>
-            <li>torsh</li>
-          </ul>
-        </div>
-        <div class="catalog-items_list_item">
-          <h4>Osvesheneie</h4>
-          <ul>
-            <li>lust</li>
-            <li>torsh</li>
-          </ul>
-        </div>
-      </div>
+
       <div class="compilations">
-        <span>Подбрки</span>
+        <span>Подборки</span>
         <ul>
           <li>Игровые ноутбуки</li>
           <li>Ультрабуки</li>

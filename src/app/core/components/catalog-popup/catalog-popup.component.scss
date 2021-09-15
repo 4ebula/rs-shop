@@ -6,11 +6,10 @@
   top: 130px;
   left: 0;
   width: 100%;
-  height: 700px;
+  height: 600px;
   background-color: #fff;
   z-index: 100;
   overflow-y: auto;
-  // overflow: hidden;
 }
 
 .catalog {
@@ -79,8 +78,6 @@
         background-color: $hover-background;
         border-color: transparent;
       }
-
-      // supposed to be 'a'
     }
   }
 }
@@ -109,14 +106,16 @@
     flex-direction: column;
 
     li {
-      @include typography(14, 400, 20);
       margin-top: 8px;
-      cursor: pointer;
+
+      a {
+        @include typography(14, 400, 20);
+      }
     }
   }
 
   h4:hover,
-  ul li:hover {
+  ul li a:hover {
     color: $hover-text;
   }
 }
