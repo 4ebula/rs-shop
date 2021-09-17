@@ -6,6 +6,7 @@ import { CategoryNavigationComponent } from './components/category-navigation/ca
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderInfoComponent } from './components/header-info/header-info.component';
 import { HeaderComponent } from './components/header/header.component';
+import { PopupComponent } from './components/popup/popup.component';
 import { CoreRouterModule } from './core-routing.module';
 import { ClosePopupDirective } from './directives/close-popup.directive';
 
@@ -17,8 +18,9 @@ import { ClosePopupDirective } from './directives/close-popup.directive';
     HeaderInfoComponent,
     ClosePopupDirective,
     CatalogPopupComponent,
+    PopupComponent,
   ],
   imports: [CommonModule, CoreRouterModule, InlineSVGModule.forRoot()],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, PopupComponent],
 })
 export class CoreModule {}
