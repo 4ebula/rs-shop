@@ -1,5 +1,11 @@
 <nav>
-  <div class="icon">Минск</div>
+
+  <div class="icon">
+    <button [inlineSVG]="'../../../../assets/icons/geo.svg'" [prepend]="true" [replaceContents]="false"
+      (click)="openPopup()">
+      <span>{{ currentLocation | async }}</span>
+    </button>
+  </div>
   <ul>
     <li><a routerLink="/info/payment">Оплата по частям</a></li>
     <li><a routerLink="/info/bonus">Бонусная программа</a></li>
