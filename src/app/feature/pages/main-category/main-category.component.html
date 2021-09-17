@@ -1,4 +1,4 @@
-<div class="category-container">
+<div class="category-container" *ngIf="isLoaded | async">
   <div class="breadcrumbs">
     <ul>
       <li><a routerLink="/">Главная</a></li>

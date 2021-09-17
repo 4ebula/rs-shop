@@ -1,4 +1,4 @@
-<ul>
+<ul *ngIf="isLoaded | async">
   <li><a href="">Все акции</a></li>
   <li *ngFor="let category of categories">
     <a routerLink="/{{ category.id }}">{{ category.name }}</a>

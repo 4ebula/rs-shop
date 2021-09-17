@@ -12,27 +12,34 @@ import { Subscription } from 'rxjs';
 export class MainCategoryComponent implements OnInit, OnDestroy {
   category!: ICategoryResponse;
 
-  sub!: Subscription;
+  sub: Subscription = new Subscription();
+
+  isLoaded!: Promise<boolean>;
 
   constructor(private categoryService: CategoryService, private router: Router) {}
 
   ngOnInit(): void {
     this.changeContent();
-    this.sub = this.router.events.subscribe((event) => {
+    const sub = this.router.events.subscribe((event) => {
       if (event instanceof RouterEvent) {
         this.changeContent();
       }
     });
+    this.sub.add(sub);
   }
 
   changeContent(): void {
     const category = this.router.url.slice(1);
-    const currentCategory = this.categoryService.getCategories().find((el) => el.id === category);
-    if (currentCategory === undefined) {
-      this.router.navigate(['/404']);
-    } else {
-      this.category = currentCategory as ICategoryResponse;
-    }
+    const sub = this.categoryService.getCategories().subscribe((response) => {
+      const currentCategory = response.find((el: ICategoryResponse) => el.id === category);
+      this.isLoaded = Promise.resolve(true);
+      if (currentCategory === undefined) {
+        this.router.navigate(['/404']);
+      } else {
+        this.category = currentCategory as ICategoryResponse;
+      }
+    });
+    this.sub.add(sub);
   }
 
   ngOnDestroy(): void {

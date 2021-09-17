@@ -9,7 +9,7 @@ import { CategoryService } from '@core/services/category/category.service';
 })
 export class CatalogPopupComponent implements OnInit {
   @HostListener('mouseover', ['$event.target'])
-  method(target: any) {
+  switchHandler(target: HTMLElement) {
     if (target.closest('.catalog-categories') && target.tagName === 'LI') {
       const id = target.getAttribute('catId');
       this.currentCategory = this.categories.find((el) => el.id === id) as ICategoryResponse;
@@ -22,12 +22,10 @@ export class CatalogPopupComponent implements OnInit {
 
   constructor(private elem: ElementRef, private categoryService: CategoryService) {}
 
-  getCategories(): void {
-    this.categories = this.categoryService.getCategories();
-  }
-
   ngOnInit(): void {
-    this.getCategories();
-    [this.currentCategory] = this.categories.slice(1, 2);
+    this.categoryService.categories.subscribe((response) => {
+      this.categories = response;
+      [this.currentCategory] = response.slice(1, 2);
+    });
   }
 }
