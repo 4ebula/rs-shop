@@ -10,34 +10,6 @@
   padding: 0 2.2%;
 }
 
-.breadcrumbs {
-  height: 15px;
-
-  ul {
-    display: flex;
-
-    li {
-      margin-right: 5px;
-      position: relative;
-
-      &:nth-of-type(n + 2)::before {
-        content: ">";
-        margin-right: 4px;
-        @include typography(9, 400, 11, #717171);
-      }
-      a {
-        @include typography(11, 400, 11, #717171);
-        text-decoration: underline;
-        cursor: pointer;
-
-        &:hover {
-          color: #bc1242;
-        }
-      }
-    }
-  }
-}
-
 .categories {
   margin-top: 18px;
 
