@@ -8,6 +8,7 @@ import { CategoryProductComponent } from './pages/category-product/category-prod
 import { MainCategoryComponent } from './pages/main-category/main-category.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
     MainCategoryComponent,
     CategoryProductComponent,
     BreadcrumbsComponent,
+    ProductPageComponent,
   ],
   imports: [CommonModule, FeatureRoutingModule, InlineSVGModule.forRoot()],
   exports: [MainPageComponent, NotFoundPageComponent],
