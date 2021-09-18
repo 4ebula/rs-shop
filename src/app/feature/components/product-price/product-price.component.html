@@ -1,0 +1,25 @@
+<div *ngIf="isInCategory; else elseBlock">
+  <p class="price">
+    <span>{{ price | number: '1.2-2'}}</span>
+    <span>p.</span>
+  </p>
+  <div class="rating">
+    <span *ngFor="let item of createArr(rating)"></span>
+  </div>
+  <button class="cart">В корзину</button>
+  <p class="credit">От <span>{{ price / 12 | number: '1.2-2'}}</span> р./месяц
+    <br>при оплате частями
+  </p>
+  <p class="delivery">Курьером — сегодня<br>Самовывоз — сегодня</p>
+</div>
+<ng-template #elseBlock>
+  <p class="price">
+    <span>{{ price | number: '1.2-2'}}</span>
+    <span>p.</span>
+  </p>
+  <button class="cart">В корзину</button>
+  <p class="credit">От <span>{{ price / 12 | number: '1.2-2'}}</span> р./месяц
+    <br>при оплате частями
+  </p>
+  <p class="delivery">Курьером — сегодня<br>Самовывоз — сегодня</p>
+</ng-template>
