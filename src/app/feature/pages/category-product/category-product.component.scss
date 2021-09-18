@@ -1,0 +1,205 @@
+@import "../../../../variables.scss";
+
+:host {
+  @include mainHost;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2.2%;
+
+    h3 {
+      margin-top: 20px;
+      @include typography(30, 700, 32, #000);
+    }
+  }
+}
+
+.filters {
+  height: 20px;
+  border-bottom: 1px solid #d5d7db66;
+}
+
+.page {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: 23px;
+
+  div {
+    background-color: #fff;
+    width: 132px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 10;
+
+    span {
+      @include typography(12, 400, 14, #aa90a5);
+    }
+
+    button {
+      width: 10px;
+      height: 10px;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      @include flexCentered;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #d5d7db66;
+    top: 9px;
+  }
+}
+
+.product {
+  display: flex;
+  width: 80%;
+  height: 350px;
+  padding: 15px 0;
+  margin-top: 10px;
+  border-bottom: 1px solid #d5d7db66;
+
+  & > div:first-child {
+    width: 15%;
+    min-width: 15%;
+    // padding: 5px;
+    margin-right: 20px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  & > div:last-child {
+    flex-grow: 1;
+    padding: 5px;
+  }
+}
+
+.product-status {
+  height: 20px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 2px;
+  margin-bottom: 15px;
+  color: #999;
+
+  span {
+    display: block;
+    height: 16px;
+    margin-left: 5px;
+    @include typography(12, 400, 20, inherit);
+  }
+}
+
+.product-charactirestics {
+  display: flex;
+}
+
+.product-description {
+  margin-right: 15px;
+}
+
+.product-name {
+  @include typography(16, 400, 18, #0072bc);
+  margin-bottom: 15px;
+
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.price {
+  height: 46px;
+
+  span:first-child {
+    @include typography(20, 400, 22, #000);
+    margin-right: 5px;
+  }
+
+  span:last-child {
+    @include typography(14, 400, 16, #000);
+  }
+}
+
+.rating {
+  height: 27px;
+  display: flex;
+
+  span {
+    display: block;
+    width: 17px;
+    height: 17px;
+    background-image: url("../../../../assets/icons/rate.svg");
+    background-repeat: no-repeat;
+  }
+}
+
+.cart {
+  border: none;
+  outline: none;
+  width: 152px;
+  height: 31px;
+  @include typography(12, 400, 14, #fff, "Tahoma");
+  background-color: #ea1653;
+
+  &:hover {
+    background-color: #bc1242;
+  }
+}
+
+.credit,
+.delivery {
+  position: relative;
+  padding-left: 25px;
+  margin-top: 10px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+  }
+}
+
+.credit {
+  @include typography(11, 400, 15);
+
+  span {
+    font-size: 13px;
+  }
+
+  &::before {
+    background-image: url("../../../../assets/icons/credit.svg");
+  }
+}
+
+.delivery {
+  @include typography(11, 400, 15);
+
+  &::before {
+    background-image: url("../../../../assets/icons/delivery.svg");
+  }
+}

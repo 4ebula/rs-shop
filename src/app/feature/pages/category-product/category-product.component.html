@@ -1,0 +1,46 @@
+<div *ngIf="isLoaded | async">
+  <app-breadcrumbs [paths]="generatePaths()"></app-breadcrumbs>
+  <h3>{{ category.name }}</h3>
+  <div class="filters"></div>
+  <div class="sort"></div>
+  <div class="page">
+    <div>
+      <button>+</button>
+      <span>Страница</span>
+      <button>+</button>
+    </div>
+  </div>
+  <div class="products">
+    <div class="product" *ngFor="let product of products">
+      <div><img src="{{product.imageUrls[0]}}" alt=""></div>
+      <div>
+        <div class="product-status" [inlineSVG]="'./assets/icons/status.svg'" [replaceContents]="false" [prepend]="true"
+          [style.color]="product.availableAmount? '#07b207' : '#999999'">
+          <span>{{product.availableAmount ? 'В' : 'Нет в' }} наличии</span>
+        </div>
+        <div class="product-charactirestics">
+          <div class="product-description">
+            <h4 class="product-name"><a>{{ product.name }}</a></h4>
+            <div class="descritrion">
+              <p>{{ product.description }}</p>
+            </div>
+          </div>
+          <div class="info">
+            <p class="price">
+              <span>{{ product.price | number: '1.2-2'}}</span>
+              <span>p.</span>
+            </p>
+            <div class="rating">
+              <span *ngFor="let item of createArr(product.rating)"></span>
+            </div>
+            <button class="cart">В корзину</button>
+            <p class="credit">От <span>{{ product.price / 12 | number: '1.2-2'}}</span> р./месяц
+              <br>при оплате частями
+            </p>
+            <p class="delivery">Курьером — сегодня<br>Самовывоз — сегодня</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
