@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
 import { ICategoryResponse, ISubCategories } from '@core/models/category-response.model';
 import { CategoryService } from '@core/services/category/category.service';
 import { Subscription } from 'rxjs';
@@ -24,7 +24,6 @@ export class CategoryProductComponent implements OnInit, OnDestroy {
   sub: Subscription = new Subscription();
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
     private productService: ProductsService,
@@ -54,7 +53,7 @@ export class CategoryProductComponent implements OnInit, OnDestroy {
 
   getGoods(): void {
     const sub = this.productService
-      .getProduct(this.topCategory.id, this.category.id)
+      .getProducts(this.topCategory.id, this.category.id)
       .subscribe((response) => {
         this.products = response;
         this.isLoaded = Promise.resolve(true);
