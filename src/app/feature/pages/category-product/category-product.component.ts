@@ -71,8 +71,4 @@ export class CategoryProductComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-
-  createArr = (length: number): Array<any> => {
-    return Array.from({ length });
-  };
 }

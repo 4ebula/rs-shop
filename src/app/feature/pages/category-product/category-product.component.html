@@ -25,20 +25,8 @@
               <p>{{ product.description }}</p>
             </div>
           </div>
-          <div class="info">
-            <p class="price">
-              <span>{{ product.price | number: '1.2-2'}}</span>
-              <span>p.</span>
-            </p>
-            <div class="rating">
-              <span *ngFor="let item of createArr(product.rating)"></span>
-            </div>
-            <button class="cart">В корзину</button>
-            <p class="credit">От <span>{{ product.price / 12 | number: '1.2-2'}}</span> р./месяц
-              <br>при оплате частями
-            </p>
-            <p class="delivery">Курьером — сегодня<br>Самовывоз — сегодня</p>
-          </div>
+          <app-product-price [price]="product.price" [rating]="product.rating" [isInCategory]="true">
+          </app-product-price>
         </div>
       </div>
     </div>
