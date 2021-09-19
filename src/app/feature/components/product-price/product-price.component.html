@@ -1,13 +1,14 @@
 <p class="price" *ngIf="isAvalable()">
-  <span>{{ price | number: '1.2-2'}}</span>
+  <span>{{ product.price | number: '1.2-2'}}</span>
   <span>p.</span>
 </p>
-<app-product-rating *ngIf="!isInProduct" [rating]="rating"></app-product-rating>
-<app-cart-button [settings]="{ amount, isInCart: false }"></app-cart-button>
-<p class="credit" *ngIf="isAvalable()">От <span>{{ price / 12 | number: '1.2-2'}}</span> р./месяц
+<app-product-rating *ngIf="!isInProduct" [rating]="product.rating"></app-product-rating>
+<app-cart-button [settings]="{ amount: product.availableAmount, isInCart: product.isInCart, id: product.id }">
+</app-cart-button>
+<p class="credit" *ngIf="isAvalable()">От <span>{{ product.price / 12 | number: '1.2-2'}}</span> р./месяц
   <br>при оплате частями
 </p>
-<app-product-stock *ngIf="isInProduct" [available]="amount" [inProduct]="true"></app-product-stock>
+<app-product-stock *ngIf="isInProduct" [available]="product.availableAmount" [inProduct]="true"></app-product-stock>
 <div class="services" *ngIf="isInProduct">
   <h3>Сопутсвующие услуги</h3>
   <ul>

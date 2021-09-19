@@ -22,9 +22,7 @@
               <p>{{ product.description }}</p>
             </div>
           </div>
-          <app-product-price [price]="product.price" [rating]="product.rating" [isInProduct]="false"
-            [amount]="product.availableAmount">
-          </app-product-price>
+          <app-product-price [product]="product" [isInProduct]="false"></app-product-price>
         </div>
       </div>
     </div>

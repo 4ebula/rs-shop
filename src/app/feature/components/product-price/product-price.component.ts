@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { IProduct } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-price',
@@ -6,11 +7,7 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
   styleUrls: ['./product-price.component.scss'],
 })
 export class ProductPriceComponent implements OnInit {
-  @Input() price!: number;
-
-  @Input() rating!: number;
-
-  @Input() amount!: number;
+  @Input() product!: IProduct;
 
   @Input() isInProduct!: boolean;
 
@@ -21,6 +18,6 @@ export class ProductPriceComponent implements OnInit {
   }
 
   isAvalable(): boolean {
-    return this.amount > 0;
+    return this.product.availableAmount > 0;
   }
 }
