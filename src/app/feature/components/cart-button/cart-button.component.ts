@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICartButtonSettings } from '../../models/cart-button-settings.model';
 
@@ -14,10 +14,12 @@ export class CartButtonComponent implements OnInit {
 
   className!: string;
 
-  constructor(private router: Router) {}
+  isAvaliable!: boolean;
+
+  constructor(private router: Router, private cd: ChangeDetectorRef) {}
 
   manageContents(): void {
-    if (this.isPresent()) {
+    if (this.isAvaliable) {
       if (this.settings.isInCart) {
         this.className = 'incart';
         this.text = 'В корзине';
@@ -32,7 +34,7 @@ export class CartButtonComponent implements OnInit {
   }
 
   handleClick(): void {
-    if (this.isPresent()) {
+    if (this.isAvaliable) {
       if (this.settings.isInCart) {
         this.router.navigate(['/cart']);
       } else {
@@ -42,11 +44,8 @@ export class CartButtonComponent implements OnInit {
     }
   }
 
-  isPresent(): boolean {
-    return this.settings.amount > 0;
-  }
-
   ngOnInit(): void {
+    this.cd.detectChanges();
     this.manageContents();
   }
 }

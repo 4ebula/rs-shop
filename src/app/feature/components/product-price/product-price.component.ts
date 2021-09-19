@@ -11,13 +11,11 @@ export class ProductPriceComponent implements OnInit {
 
   @Input() isInProduct!: boolean;
 
+  isAvailable!: boolean;
+
   constructor(private elemRef: ElementRef) {}
 
   ngOnInit(): void {
     if (this.isInProduct) this.elemRef.nativeElement.classList.add('product');
-  }
-
-  isAvalable(): boolean {
-    return this.product.availableAmount > 0;
   }
 }

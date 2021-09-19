@@ -1,22 +1,24 @@
-<p class="price" *ngIf="isAvalable()">
-  <span>{{ product.price | number: '1.2-2'}}</span>
-  <span>p.</span>
-</p>
-<app-product-rating *ngIf="!isInProduct" [rating]="product.rating"></app-product-rating>
-<app-cart-button [settings]="{ amount: product.availableAmount, isInCart: product.isInCart, id: product.id }">
-</app-cart-button>
-<p class="credit" *ngIf="isAvalable()">От <span>{{ product.price / 12 | number: '1.2-2'}}</span> р./месяц
-  <br>при оплате частями
-</p>
-<app-product-stock *ngIf="isInProduct" [available]="product.availableAmount" [inProduct]="true"></app-product-stock>
-<div class="services" *ngIf="isInProduct">
-  <h3>Сопутсвующие услуги</h3>
-  <ul>
-    <li>Установка и подключение</li>
-    <li>Надежная защита</li>
-  </ul>
-</div>
-<p class="delivery" *ngIf="isAvalable()">
-  <span *ngIf="isInProduct">Доставка в г.Минск</span>Курьером — сегодня<br>Самовывоз — сегодня
-</p>
-<p class="warranty" *ngIf="isInProduct">Гарантия 3 года</p>
+<ng-container (appProductAvailability)="isAvailable = $event" [amount]="product.availableAmount">
+  <p class="price" *ngIf="isAvailable">
+    <span>{{ product.price | number: '1.2-2'}}</span>
+    <span>p.</span>
+  </p>
+  <app-product-rating *ngIf="!isInProduct" [rating]="product.rating"></app-product-rating>
+  <app-cart-button [settings]="{ amount: product.availableAmount, isInCart: product.isInCart, id: product.id }">
+  </app-cart-button>
+  <p class="credit" *ngIf="isAvailable">От <span>{{ product.price / 12 | number: '1.2-2'}}</span> р./месяц
+    <br>при оплате частями
+  </p>
+  <app-product-stock *ngIf="isInProduct" [available]="product.availableAmount" [inProduct]="true"></app-product-stock>
+  <div class="services" *ngIf="isInProduct">
+    <h3>Сопутсвующие услуги</h3>
+    <ul>
+      <li>Установка и подключение</li>
+      <li>Надежная защита</li>
+    </ul>
+  </div>
+  <p class="delivery" *ngIf="isAvailable">
+    <span *ngIf="isInProduct">Доставка в г.Минск</span>Курьером — сегодня<br>Самовывоз — сегодня
+  </p>
+  <p class="warranty" *ngIf="isInProduct">Гарантия 3 года</p>
+</ng-container>
