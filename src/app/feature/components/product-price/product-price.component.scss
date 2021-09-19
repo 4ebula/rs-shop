@@ -25,12 +25,6 @@
       }
     }
 
-    .cart {
-      width: 140px;
-      height: 41px;
-      @include typography(14, 400, 16, #fff);
-    }
-
     .delivery {
       @include typography(12, 400, 15);
 
@@ -147,25 +141,6 @@
   width: 152px;
   height: 31px;
   @include typography(12, 400, 14, #fff, "Tahoma");
-}
-
-.cart {
-  background-color: #ea1653;
-
-  &:hover {
-    background-color: #bc1242;
-  }
-}
-
-.absent {
-  border: 1px solid $text-blue;
-  color: $text-blue;
-  background-color: transparent;
-
-  &:hover {
-    border-color: #bc1242;
-    color: #bc1242;
-  }
 }
 
 .warranty {
