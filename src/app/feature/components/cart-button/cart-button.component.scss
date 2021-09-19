@@ -1,0 +1,45 @@
+@import "../../../../variables.scss";
+
+:host {
+  display: block;
+
+  button {
+    // width: 100%;
+    // height: 100%;
+    border: none;
+    outline: none;
+    width: 152px;
+    height: 31px;
+    @include typography(12, 400, 14, #fff, "Tahoma");
+
+    background-color: #ea1653;
+
+    &:hover {
+      background-color: #bc1242;
+    }
+  }
+
+  .absent {
+    border: 1px solid $text-blue;
+    color: $text-blue;
+    background-color: transparent;
+
+    &:hover {
+      border-color: #bc1242;
+      background-color: transparent;
+      color: #bc1242;
+    }
+  }
+
+  .incart {
+    border: 1px solid #ea1653;
+    color: #ea1653;
+    background-color: transparent;
+
+    &:hover {
+      border-color: #bc1242;
+      background-color: transparent;
+      color: #bc1242;
+    }
+  }
+}

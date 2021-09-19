@@ -12,6 +12,7 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { ProductPriceComponent } from './components/product-price/product-price.component';
 import { ProductRatingComponent } from './components/product-rating/product-rating.component';
 import { ProductStockComponent } from './components/product-stock/product-stock.component';
+import { CartButtonComponent } from './components/cart-button/cart-button.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProductStockComponent } from './components/product-stock/product-stock.
     ProductPriceComponent,
     ProductRatingComponent,
     ProductStockComponent,
+    CartButtonComponent,
   ],
   imports: [CommonModule, FeatureRoutingModule, InlineSVGModule.forRoot()],
   exports: [MainPageComponent, NotFoundPageComponent],
