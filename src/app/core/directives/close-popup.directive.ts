@@ -10,7 +10,8 @@ export class ClosePopupDirective {
   onClick(target: HTMLElement): void {
     if (
       !this.elementRef.nativeElement.contains(target) &&
-      !target.classList.contains('btn_activator')
+      !target.classList.contains('btn_activator') &&
+      !target.closest('.btn_activator')
     ) {
       this.appClosePopup.emit();
     }
