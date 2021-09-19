@@ -1,0 +1,80 @@
+@import "../../../../variables.scss";
+
+:host {
+  display: block;
+  position: relative;
+  width: 100px;
+  height: 40px;
+  overflow-x: hidden;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background: {
+      image: url("../../../../assets/icons/rate-sprite.png");
+    }
+  }
+
+  &::before {
+    background-position-y: 139px;
+  }
+
+  &.zero {
+    &::before {
+      width: 0px;
+    }
+    &::after {
+      left: 0;
+    }
+  }
+
+  &.one {
+    &::before {
+      width: 20px;
+    }
+    &::after {
+      left: 20px;
+    }
+  }
+
+  &.two {
+    &::before {
+      width: 40px;
+    }
+    &::after {
+      left: 40px;
+    }
+  }
+
+  &.tree {
+    &::before {
+      width: 60px;
+    }
+    &::after {
+      left: 60px;
+    }
+  }
+
+  &.four {
+    &::before {
+      width: 80px;
+    }
+    &::after {
+      left: 80px;
+    }
+  }
+
+  &.five {
+    &::before {
+      width: 100px;
+    }
+    &::after {
+      left: 100px;
+    }
+  }
+}
