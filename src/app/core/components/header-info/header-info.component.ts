@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GeoService } from '@core/services/geo/geo.service';
-import { PopupService } from '@core/services/popup.service';
+import { PopupService } from '@core/services/popup/popup.service';
 
 @Component({
   selector: 'app-header-info',

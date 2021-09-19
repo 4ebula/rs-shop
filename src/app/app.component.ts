@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PopupService } from '@core/services/popup.service';
+import { PopupService } from '@core/services/popup/popup.service';
 import { Observable } from 'rxjs';
 
 @Component({

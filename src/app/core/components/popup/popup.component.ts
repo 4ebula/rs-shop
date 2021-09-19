@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { PopupService } from '@core/services/popup.service';
+import { PopupService } from '@core/services/popup/popup.service';
 
 @Component({
   selector: 'app-popup',
