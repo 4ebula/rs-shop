@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ICartButtonSettings } from '../../models/cart-button-settings.model';
 
 @Component({
@@ -6,15 +7,46 @@ import { ICartButtonSettings } from '../../models/cart-button-settings.model';
   templateUrl: './cart-button.component.html',
   styleUrls: ['./cart-button.component.scss'],
 })
-export class CartButtonComponent {
+export class CartButtonComponent implements OnInit {
   @Input() settings!: ICartButtonSettings;
 
-  generateText(): string {
-    return this.settings.amount > 0 ? 'В корзину' : 'Узнать о поступлении';
+  text!: string;
+
+  className!: string;
+
+  constructor(private router: Router) {}
+
+  manageContents(): void {
+    if (this.isPresent()) {
+      if (this.settings.isInCart) {
+        this.className = 'incart';
+        this.text = 'В корзине';
+      } else {
+        this.className = '';
+        this.text = 'В корзину';
+      }
+    } else {
+      this.className = 'absent';
+      this.text = 'Узнать о поступлении';
+    }
   }
 
-  generateClass = (): string => {
-    // 'cart' : 'absent' 'incart'
-    return this.settings.amount > 0 ? '' : 'absent';
-  };
+  handleClick(): void {
+    if (this.isPresent()) {
+      if (this.settings.isInCart) {
+        this.router.navigate(['/cart']);
+      } else {
+        this.settings.isInCart = true;
+        this.manageContents();
+      }
+    }
+  }
+
+  isPresent(): boolean {
+    return this.settings.amount > 0;
+  }
+
+  ngOnInit(): void {
+    this.manageContents();
+  }
 }
