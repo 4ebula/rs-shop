@@ -1,0 +1,34 @@
+<div *ngIf="isLoaded | async">
+  <app-breadcrumbs [paths]="generatePaths()"></app-breadcrumbs>
+  <div class="product">
+    <h2>{{ product.name }}</h2>
+    <app-product-rating [rating]="product.rating"></app-product-rating>
+    <div class="details">
+      <div class="gallery">
+        <div *ngFor="let img of product.imageUrls" (click)="changeImage(img)"><img [src]="img"></div>
+      </div>
+      <div class="current-image"><img [src]="currentImage" alt=""></div>
+      <app-product-price [price]="product.price" [isInProduct]="true"></app-product-price>
+    </div>
+    <div class="description"></div>
+  </div>
+  <div class="description">
+    <div class="description_buttons">
+      <div [class.active]="activeButton === 0">
+        <button (click)="hadleSwitchbutton(0)">Обзор</button>
+      </div>
+      <div [class.active]="activeButton === 1">
+        <button (click)="hadleSwitchbutton(1)">Отзывы</button>
+      </div>
+      <div [class.active]="activeButton === 2">
+        <button (click)="hadleSwitchbutton(2)">Вопрос-ответ</button>
+      </div>
+    </div>
+    <div class="description_output" [ngSwitch]="activeButton">
+      <p *ngSwitchCase="0">{{product.description}}</p>
+      <p *ngSwitchCase="1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa saepe quos et suscipit
+        placeat reiciendis.</p>
+      <p *ngSwitchCase="2">Lorem ipsum dolor sit amet.</p>
+    </div>
+  </div>
+</div>
