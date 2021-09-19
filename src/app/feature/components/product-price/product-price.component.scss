@@ -60,19 +60,6 @@
   }
 }
 
-.rating {
-  height: 27px;
-  display: flex;
-
-  span {
-    display: block;
-    width: 17px;
-    height: 17px;
-    background-image: url("../../../../assets/icons/rate.svg");
-    background-repeat: no-repeat;
-  }
-}
-
 .credit,
 .delivery {
   position: relative;

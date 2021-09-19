@@ -2,9 +2,7 @@
   <span>{{ price | number: '1.2-2'}}</span>
   <span>p.</span>
 </p>
-<div class="rating" *ngIf="!isInProduct">
-  <span *ngFor="let item of createArr(rating)"></span>
-</div>
+<app-product-rating *ngIf="!isInProduct" [rating]="rating"></app-product-rating>
 <button class="cart">В корзину</button>
 <p class="credit">От <span>{{ price / 12 | number: '1.2-2'}}</span> р./месяц
   <br>при оплате частями

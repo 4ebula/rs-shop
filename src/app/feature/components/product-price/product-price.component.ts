@@ -17,8 +17,4 @@ export class ProductPriceComponent implements OnInit {
   ngOnInit(): void {
     if (this.isInProduct) this.elemRef.nativeElement.classList.add('product');
   }
-
-  createArr = (length: number): Array<any> => {
-    return Array.from({ length });
-  };
 }
