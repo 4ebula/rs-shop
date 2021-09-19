@@ -1,25 +1,22 @@
-<div *ngIf="isInCategory; else elseBlock">
-  <p class="price">
-    <span>{{ price | number: '1.2-2'}}</span>
-    <span>p.</span>
-  </p>
-  <div class="rating">
-    <span *ngFor="let item of createArr(rating)"></span>
-  </div>
-  <button class="cart">В корзину</button>
-  <p class="credit">От <span>{{ price / 12 | number: '1.2-2'}}</span> р./месяц
-    <br>при оплате частями
-  </p>
-  <p class="delivery">Курьером — сегодня<br>Самовывоз — сегодня</p>
+<p class="price">
+  <span>{{ price | number: '1.2-2'}}</span>
+  <span>p.</span>
+</p>
+<div class="rating" *ngIf="!isInProduct">
+  <span *ngFor="let item of createArr(rating)"></span>
 </div>
-<ng-template #elseBlock>
-  <p class="price">
-    <span>{{ price | number: '1.2-2'}}</span>
-    <span>p.</span>
-  </p>
-  <button class="cart">В корзину</button>
-  <p class="credit">От <span>{{ price / 12 | number: '1.2-2'}}</span> р./месяц
-    <br>при оплате частями
-  </p>
-  <p class="delivery">Курьером — сегодня<br>Самовывоз — сегодня</p>
-</ng-template>
+<button class="cart">В корзину</button>
+<p class="credit">От <span>{{ price / 12 | number: '1.2-2'}}</span> р./месяц
+  <br>при оплате частями
+</p>
+<div class="services" *ngIf="isInProduct">
+  <h3>Сопутсвующие услуги</h3>
+  <ul>
+    <li>Установка и подключение</li>
+    <li>Надежная защита</li>
+  </ul>
+</div>
+<p class="delivery">
+  <span *ngIf="isInProduct">Доставка в г.Минск</span>Курьером — сегодня<br>Самовывоз — сегодня
+</p>
+<p class="warranty">Гарантия 3 года</p>

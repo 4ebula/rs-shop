@@ -1,11 +1,49 @@
 @import "../../../../variables.scss";
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
 
-  & > div {
-    display: flex;
-    flex-direction: column;
+  &.product {
+    flex-grow: 1;
+  }
+
+  &.product {
+    .price span:first-child {
+      @include typography(30, 500, 36, #000);
+    }
+
+    .credit {
+      @include typography(14, 400, 16);
+
+      span {
+        font-size: 17px;
+      }
+
+      &::before {
+        transform: scale(1.2);
+      }
+    }
+
+    .cart {
+      width: 140px;
+      height: 41px;
+      @include typography(14, 400, 16, #fff);
+    }
+
+    .delivery {
+      @include typography(12, 400, 15);
+
+      span {
+        @include typography(14, 700, 20);
+        display: block;
+        margin-bottom: 9px;
+      }
+
+      &::before {
+        transform: scale(1.2);
+      }
+    }
   }
 }
 
@@ -64,6 +102,49 @@
   }
 }
 
+.services {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-top: $border;
+  border-bottom: $border;
+  padding: 15px 0;
+  position: relative;
+
+  h3 {
+    @include typography(14, 700, 20);
+    padding-left: 24px;
+    margin-bottom: 9px;
+  }
+
+  ul {
+    padding-left: 40px;
+
+    li {
+      text-indent: -15px;
+      @include typography(12, 400, 12);
+    }
+
+    li::before {
+      content: "—";
+      margin-right: 7px;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: {
+      image: url("../../../../assets/icons/product-sprite.png");
+      repeat: no-repeat;
+      position: 0px -40px;
+    }
+  }
+}
+
 .delivery {
   @include typography(11, 400, 15);
 
@@ -82,5 +163,29 @@
 
   &:hover {
     background-color: #bc1242;
+  }
+}
+
+.warranty {
+  @include typography(14, 700, 20);
+  position: relative;
+  padding-left: 24px;
+  padding-top: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-top: $border;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: {
+      image: url("../../../../assets/icons/product-sprite.png");
+      repeat: no-repeat;
+      position: 0px -160px;
+    }
   }
 }

@@ -4,14 +4,9 @@ $text-black: #1a1a1a;
 $text-grey: #909399;
 $hover-text: #d62761;
 $hover-background: #fcedf2;
-// $light-grey: #efefef;
-// $dark-grey: #4f4f4f;
-// $blue: #2f80ed;
-// $green: #27ae60;
-// $red: #e85757;
-// $yellow: #f2c94c;
-// $light-black: #333;
-// $mild-grey: #f2f2f2;
+$border-grey: #d5d7db66;
+
+$border: 1px solid $border-grey;
 
 @mixin typography($size: 16, $weight: 400, $line: 32, $color: $text-black, $family: "Arial", $spacing: 0px) {
   font: {
