@@ -10,11 +10,17 @@ export class ProductPriceComponent implements OnInit {
 
   @Input() rating!: number;
 
+  @Input() amount!: number;
+
   @Input() isInProduct!: boolean;
 
   constructor(private elemRef: ElementRef) {}
 
   ngOnInit(): void {
     if (this.isInProduct) this.elemRef.nativeElement.classList.add('product');
+  }
+
+  isAvalable(): boolean {
+    return this.amount > 0;
   }
 }

@@ -140,16 +140,31 @@
   }
 }
 
-.cart {
+.cart,
+.absent {
   border: none;
   outline: none;
   width: 152px;
   height: 31px;
   @include typography(12, 400, 14, #fff, "Tahoma");
+}
+
+.cart {
   background-color: #ea1653;
 
   &:hover {
     background-color: #bc1242;
+  }
+}
+
+.absent {
+  border: 1px solid $text-blue;
+  color: $text-blue;
+  background-color: transparent;
+
+  &:hover {
+    border-color: #bc1242;
+    color: #bc1242;
   }
 }
 

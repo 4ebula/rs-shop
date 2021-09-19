@@ -19,6 +19,6 @@ export class ProductStockComponent implements OnInit {
   inStock!: boolean;
 
   ngOnInit(): void {
-    this.inStock = this.available > 2;
+    this.inStock = this.available > 0;
   }
 }

@@ -1,12 +1,13 @@
-<p class="price">
+<p class="price" *ngIf="isAvalable()">
   <span>{{ price | number: '1.2-2'}}</span>
   <span>p.</span>
 </p>
 <app-product-rating *ngIf="!isInProduct" [rating]="rating"></app-product-rating>
-<button class="cart">В корзину</button>
-<p class="credit">От <span>{{ price / 12 | number: '1.2-2'}}</span> р./месяц
+<button [ngClass]="isAvalable() ? 'cart' : 'absent'">{{ isAvalable() ? 'В корзину' : 'Узнать о поступлении'}}</button>
+<p class="credit" *ngIf="isAvalable()">От <span>{{ price / 12 | number: '1.2-2'}}</span> р./месяц
   <br>при оплате частями
 </p>
+<app-product-stock *ngIf="isInProduct" [available]="amount" [inProduct]="true"></app-product-stock>
 <div class="services" *ngIf="isInProduct">
   <h3>Сопутсвующие услуги</h3>
   <ul>
@@ -14,7 +15,7 @@
     <li>Надежная защита</li>
   </ul>
 </div>
-<p class="delivery">
+<p class="delivery" *ngIf="isAvalable()">
   <span *ngIf="isInProduct">Доставка в г.Минск</span>Курьером — сегодня<br>Самовывоз — сегодня
 </p>
-<p class="warranty">Гарантия 3 года</p>
+<p class="warranty" *ngIf="isInProduct">Гарантия 3 года</p>

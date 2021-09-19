@@ -88,23 +88,6 @@
   }
 }
 
-.product-status {
-  height: 20px;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  padding: 2px;
-  margin-bottom: 15px;
-  color: #999;
-
-  span {
-    display: block;
-    height: 16px;
-    margin-left: 5px;
-    @include typography(12, 400, 20, inherit);
-  }
-}
-
 .product-charactirestics {
   display: flex;
 }

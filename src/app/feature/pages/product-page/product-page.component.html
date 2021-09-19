@@ -8,7 +8,8 @@
         <div *ngFor="let img of product.imageUrls" (click)="changeImage(img)"><img [src]="img"></div>
       </div>
       <div class="current-image"><img [src]="currentImage" alt=""></div>
-      <app-product-price [price]="product.price" [isInProduct]="true"></app-product-price>
+      <app-product-price [price]="product.price" [isInProduct]="true" [amount]="product.availableAmount">
+      </app-product-price>
     </div>
     <div class="description"></div>
   </div>
