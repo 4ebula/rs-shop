@@ -1,0 +1,54 @@
+@import "../../../../variables.scss";
+
+:host {
+  display: block;
+
+  p {
+    padding-left: 19px;
+
+    height: 20px;
+    position: relative;
+    @include typography(12, 400, 15, #999);
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      top: -3px;
+      left: 0;
+      background: {
+        image: url("/assets/icons/status-in.svg");
+        repeat: no-repeat;
+      }
+    }
+
+    &.absent {
+      color: #ea1653;
+
+      &::before {
+        background-image: url("/assets/icons/status-out.svg");
+      }
+    }
+
+    &.product {
+      height: 20px;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      padding-left: 24px;
+
+      &::before {
+        width: 19px;
+        height: 19px;
+        background-image: url("/assets/icons/product-sprite.png");
+      }
+    }
+
+    &.product.absent {
+      text-transform: lowercase;
+      &::before {
+        width: 0;
+      }
+    }
+  }
+}

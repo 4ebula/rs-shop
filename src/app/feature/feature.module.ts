@@ -11,6 +11,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { ProductPriceComponent } from './components/product-price/product-price.component';
 import { ProductRatingComponent } from './components/product-rating/product-rating.component';
+import { ProductStockComponent } from './components/product-stock/product-stock.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProductRatingComponent } from './components/product-rating/product-rati
     ProductPageComponent,
     ProductPriceComponent,
     ProductRatingComponent,
+    ProductStockComponent,
   ],
   imports: [CommonModule, FeatureRoutingModule, InlineSVGModule.forRoot()],
   exports: [MainPageComponent, NotFoundPageComponent],
