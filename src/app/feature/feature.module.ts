@@ -14,6 +14,7 @@ import { ProductRatingComponent } from './components/product-rating/product-rati
 import { ProductStockComponent } from './components/product-stock/product-stock.component';
 import { CartButtonComponent } from './components/cart-button/cart-button.component';
 import { ProductAvailabilityDirective } from './directives/product-availability/product-availability.directive';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProductAvailabilityDirective } from './directives/product-availability/
     ProductStockComponent,
     CartButtonComponent,
     ProductAvailabilityDirective,
+    CartPageComponent,
   ],
   imports: [CommonModule, FeatureRoutingModule, InlineSVGModule.forRoot()],
   exports: [MainPageComponent, NotFoundPageComponent],

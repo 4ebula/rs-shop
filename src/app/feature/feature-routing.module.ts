@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { CategoryProductComponent } from './pages/category-product/category-product.component';
 import { MainCategoryComponent } from './pages/main-category/main-category.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
@@ -68,35 +69,7 @@ const SUB_CATEGORIES = [
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
-  // {
-  //   path: 'refrigerators',
-  //   data: { category: 'appliances', subCategory: 'refrigerators' },
-  //   children: [
-  //     {
-  //       path: '',
-  //       component: CategoryProductComponent,
-  //     },
-  //     {
-  //       path: ':id',
-  //       component: ProductPageComponent,
-  //     },
-  //   ],
-  // },
-  // {
-  //   path: 'cookers',
-  //   component: CategoryProductComponent,
-  //   data: { category: 'appliances', subCategory: 'cookers' },
-  // },
-  // {
-  //   path: 'dishwashers',
-  //   component: CategoryProductComponent,
-  //   data: { category: 'appliances', subCategory: 'dishwashers' },
-  // },
-  // {
-  //   path: 'freezers',
-  //   component: CategoryProductComponent,
-  //   data: { category: 'appliances', subCategory: 'freezers' },
-  // },
+  { path: 'cart', component: CartPageComponent },
   ...SUB_CATEGORIES,
   ...CATEGORIES,
   { path: '**', component: NotFoundPageComponent },
