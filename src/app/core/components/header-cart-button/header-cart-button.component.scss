@@ -19,6 +19,18 @@
       height: 20px;
       color: $text-black;
     }
+
+    span {
+      position: absolute;
+      @include flexCentered;
+      width: 13px;
+      height: 13px;
+      top: 5px;
+      left: 29px;
+      border-radius: 50%;
+      background-color: #db215f;
+      @include typography(8, 400, 8, #fff);
+    }
   }
 
   &:hover {
