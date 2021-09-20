@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ISliderInfo } from '../../models/slider-info.model';
+
+import { ISliderInfo } from '@feature/models/slider-info.model';
 import { SLIDER_INFO } from './constants';
 
 @Component({

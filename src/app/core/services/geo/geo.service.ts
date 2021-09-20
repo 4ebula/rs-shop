@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 
 const DEFAULT_LOCATION = 'Минск';
@@ -20,7 +20,7 @@ export class GeoService {
       (error) => {
         this.geo.next(DEFAULT_LOCATION);
         throw error;
-      },
+      }
     );
   }
 

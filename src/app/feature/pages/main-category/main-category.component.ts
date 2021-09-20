@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { ICategoryResponse } from '@core/models/category-response.model';
 import { CategoryService } from '@core/services/category/category.service';
-import { Subscription } from 'rxjs';
-import { IBreadcrumbs } from '../../models/breadcrumbs.model';
+import { IBreadcrumbs } from '@feature/models/breadcrumbs.model';
 
 @Component({
   selector: 'app-main-category',
@@ -20,7 +21,7 @@ export class MainCategoryComponent implements OnInit, OnDestroy {
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

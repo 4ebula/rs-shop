@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { PopupService } from '@core/services/popup/popup.service';
 import { Observable } from 'rxjs';
+
+import { PopupService } from '@core/services/popup/popup.service';
 
 @Component({
   selector: 'app-root',

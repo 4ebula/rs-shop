@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ICartButtonSettings } from '../../models/cart-button-settings.model';
-import { CartService } from '../../services/cart/cart.service';
+
+import { ICartButtonSettings } from '@feature/models/cart-button-settings.model';
+import { CartService } from '@feature/services/cart/cart.service';
 
 @Component({
   selector: 'app-cart-button',
@@ -48,7 +49,6 @@ export class CartButtonComponent implements OnInit {
       }
     }
 
-    this.cartService.cartContent$.subscribe((res) => console.log('Result: ', res));
     this.cartService.addToCart(this.settings.id);
   }
 

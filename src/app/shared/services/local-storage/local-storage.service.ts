@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ICart } from 'src/app/feature/models/cart.model';
+
+import { ICart } from '@feature/models/cart.model';
 
 enum StorageItems {
   order = 'order',

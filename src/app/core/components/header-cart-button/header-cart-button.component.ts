@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { CartService } from 'src/app/feature/services/cart/cart.service';
+
+import { CartService } from '@feature/services/cart/cart.service';
 
 @Component({
   selector: 'app-header-cart-button',

@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { ICategoryResponse } from '@core/models/category-response.model';
 import { CategoryService } from '@core/services/category/category.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-category-navigation',

@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { ICategoryResponse, ISubCategories } from '@core/models/category-response.model';
 import { CategoryService } from '@core/services/category/category.service';
-import { Subscription } from 'rxjs';
-import { IBreadcrumbs } from '../../models/breadcrumbs.model';
-import { IProduct } from '../../models/product.model';
-import { ProductsService } from '../../services/products/products.service';
+import { IBreadcrumbs } from '@feature/models/breadcrumbs.model';
+import { IProduct } from '@feature/models/product.model';
+import { ProductsService } from '@feature/services/products/products.service';
 
 @Component({
   selector: 'app-category-product',
@@ -26,7 +27,7 @@ export class CategoryProductComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private productService: ProductsService,
+    private productService: ProductsService
   ) {}
 
   ngOnInit(): void {
@@ -39,11 +40,11 @@ export class CategoryProductComponent implements OnInit, OnDestroy {
   getCategories(data: Data): void {
     const sub = this.categoryService.getCategories().subscribe((response) => {
       const topCategory = response.find(
-        (el: ICategoryResponse) => el.id === data.category,
+        (el: ICategoryResponse) => el.id === data.category
       ) as ICategoryResponse;
       this.topCategory = topCategory;
       const category = topCategory.subCategories.find(
-        (el: ISubCategories) => el.id === data.subCategory,
+        (el: ISubCategories) => el.id === data.subCategory
       ) as ISubCategories;
       this.category = category;
       this.getGoods();

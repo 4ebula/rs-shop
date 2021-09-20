@@ -8,9 +8,8 @@ describe('CategoryNavigationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoryNavigationComponent ]
-    })
-    .compileComponents();
+      declarations: [CategoryNavigationComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
