@@ -53,6 +53,7 @@ export class CartItemComponent implements OnInit, OnDestroy {
 
   calculateSum(decrease: boolean): void {
     this.sum = this.product.price * this.amount;
+    this.cartService.changeItemAmount(this.product.id, this.amount);
     this.increaseToll.emit(this.product.price * (decrease ? -1 : 1));
   }
 

@@ -37,7 +37,23 @@ export class CartService {
 
   public removeItem(id: string): void {
     const itemNum = this.cartContent.findIndex((product) => product.id === id);
-    if (itemNum !== -1) this.cartContent.splice(itemNum, 1);
-    this.storage.setCartOrder(this.cartContent);
+    if (itemNum !== -1) {
+      this.cartContent.splice(itemNum, 1);
+      this.storage.setCartOrder(this.cartContent);
+    }
+  }
+
+  public changeItemAmount(id: string, amount: number): void {
+    let isChanged = false;
+    this.cartContent.forEach((product) => {
+      if (product.id === id) {
+        isChanged = true;
+        // eslint-disable-next-line no-param-reassign
+        product.amount = amount;
+      }
+    });
+    if (isChanged) {
+      this.storage.setCartOrder(this.cartContent);
+    }
   }
 }
