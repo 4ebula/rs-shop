@@ -34,4 +34,10 @@ export class CartService {
   public getItems(): ICart[] {
     return this.cartContent;
   }
+
+  public removeItem(id: string): void {
+    const itemNum = this.cartContent.findIndex((product) => product.id === id);
+    if (itemNum !== -1) this.cartContent.splice(itemNum, 1);
+    this.storage.setCartOrder(this.cartContent);
+  }
 }

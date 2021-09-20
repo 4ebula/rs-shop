@@ -6,12 +6,12 @@
   div h3 {
     @include typography(30, 700, 36, #000);
     margin-top: 18px;
-
-    div > div p {
-      @include typography(12, 400, 12);
-      margin-top: 10px;
-    }
   }
+}
+
+.empty {
+  @include typography(12, 400, 12);
+  margin-top: 10px;
 }
 
 .cart-content {

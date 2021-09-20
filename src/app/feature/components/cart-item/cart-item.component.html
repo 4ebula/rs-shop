@@ -1,7 +1,7 @@
 <ng-container *ngIf="isLoaded | async">
   <div>
     <img src="{{ product.imageUrls[0] }}">
-    <button>удалить</button>
+    <button (click)="removeItem()">удалить</button>
   </div>
   <div class="product-name">
     <a routerLink="{{ generateLink() }}">{{ product.name }}</a>

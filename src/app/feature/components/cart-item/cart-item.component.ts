@@ -1,16 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 import { ICart } from '@feature/models/cart.model';
 import { IProduct } from '@feature/models/product.model';
 import { CartService } from '@feature/services/cart/cart.service';
 import { ProductsService } from '@feature/services/products/products.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.scss'],
 })
-export class CartItemComponent implements OnInit {
+export class CartItemComponent implements OnInit, OnDestroy {
   @Input() cartItem!: ICart;
 
   @Output() increaseToll: EventEmitter<number> = new EventEmitter();
@@ -23,15 +24,18 @@ export class CartItemComponent implements OnInit {
 
   sum!: number;
 
+  sub: Subscription = new Subscription();
+
   constructor(private cartService: CartService, private productService: ProductsService) {}
 
   ngOnInit(): void {
-    this.productService.getProduct(this.cartItem.id).subscribe((res) => {
+    const sub = this.productService.getProduct(this.cartItem.id).subscribe((res) => {
       this.product = res;
       this.sum = this.product.price * this.amount;
       this.increaseToll.emit(this.sum);
       this.isLoaded = Promise.resolve(true);
     });
+    this.sub.add(sub);
     this.amount = this.cartItem.amount;
   }
 
@@ -54,5 +58,14 @@ export class CartItemComponent implements OnInit {
 
   generateLink(): string {
     return `/${this.product.subCategory}/${this.product.id}`;
+  }
+
+  removeItem(): void {
+    this.increaseToll.emit(-this.sum);
+    this.cartService.removeItem(this.product.id);
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
