@@ -1,6 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg';
+
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { FeatureRoutingModule } from './feature-routing.module';
@@ -34,7 +36,7 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
     CartPageComponent,
     CartItemComponent,
   ],
-  imports: [CommonModule, FeatureRoutingModule, InlineSVGModule.forRoot()],
+  imports: [CommonModule, FormsModule, FeatureRoutingModule, InlineSVGModule.forRoot()],
   exports: [MainPageComponent, NotFoundPageComponent],
 })
 export class FeatureModule {}

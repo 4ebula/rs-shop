@@ -1,6 +1,6 @@
 <ng-container *ngIf="isLoaded | async">
   <div>
-    <img src="" alt="">
+    <img src="{{ product.imageUrls[0] }}">
     <button>удалить</button>
   </div>
   <div class="product-name">
@@ -10,7 +10,7 @@
   <div>
     <div class="amount">
       <button (click)="decreaseAmount()">-</button>
-      <input type="text" [value]="amount">
+      <input type="number" [(ngModel)]="amount">
       <button (click)="increaseAmount()">+</button>
     </div>
   </div>
@@ -19,6 +19,6 @@
     <span>Самовывоз: сегодня</span>
   </div>
   <div>
-    <span>777</span><span>р.</span>
+    <span>{{ calculateSum() }}</span><span>р.</span>
   </div>
 </ng-container>

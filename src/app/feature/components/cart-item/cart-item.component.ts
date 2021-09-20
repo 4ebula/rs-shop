@@ -37,4 +37,8 @@ export class CartItemComponent implements OnInit {
       this.amount -= 1;
     }
   }
+
+  calculateSum(): number {
+    return this.product.price * this.amount;
+  }
 }
