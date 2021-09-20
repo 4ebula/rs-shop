@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICartButtonSettings } from '../../models/cart-button-settings.model';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-cart-button',
@@ -16,7 +17,11 @@ export class CartButtonComponent implements OnInit {
 
   isAvaliable!: boolean;
 
-  constructor(private router: Router, private cd: ChangeDetectorRef) {}
+  constructor(
+    private router: Router,
+    private cd: ChangeDetectorRef,
+    private cartService: CartService
+  ) {}
 
   manageContents(): void {
     if (this.isAvaliable) {
@@ -42,10 +47,14 @@ export class CartButtonComponent implements OnInit {
         this.manageContents();
       }
     }
+
+    this.cartService.cartContent$.subscribe((res) => console.log('Result: ', res));
+    this.cartService.addToCart(this.settings.id);
   }
 
   ngOnInit(): void {
     this.cd.detectChanges();
+    this.settings.isInCart = this.cartService.findInCart(this.settings.id);
     this.manageContents();
   }
 }
