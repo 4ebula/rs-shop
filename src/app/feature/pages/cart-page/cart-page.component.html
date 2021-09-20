@@ -11,30 +11,7 @@
         <span>Доставка</span>
         <span>Стоимость</span>
       </div>
-      <div class="cart-item">
-        <div>
-          <img src="" alt="">
-          <button>удалить</button>
-        </div>
-        <div class="product-name">
-          <a>Dummy text</a>
-        </div>
-        <div></div>
-        <div>
-          <div class="amount">
-            <button (click)="decreaseAmount()">-</button>
-            <input type="text" [value]="amount">
-            <button (click)="increaseAmount()">+</button>
-          </div>
-        </div>
-        <div>
-          <span>Курьером: завтра</span>
-          <span>Самовывоз: сегодня</span>
-        </div>
-        <div>
-          <span>777</span><span>р.</span>
-        </div>
-      </div>
+      <app-cart-item *ngFor="let product of products" [cartItem]="product"></app-cart-item>
       <div class="total">
         <span>Общая стоимость:</span>
         <span>777 р.</span>
