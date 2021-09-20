@@ -1,4 +1,4 @@
-<button class="btn">
+<button class="btn" [class.active]="isActive$ | async" (click)="handleClick()">
   <div [inlineSVG]="'../../../../assets/icons/cart.svg'"></div>
   Корзина
   <span *ngIf="checkIfCartHasProducts()">{{ amountInCart }}</span>
