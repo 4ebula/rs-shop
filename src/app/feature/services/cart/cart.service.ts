@@ -30,4 +30,8 @@ export class CartService {
   public getAmountInCart(): number {
     return this.cartContent.length;
   }
+
+  public getItems(): ICart[] {
+    return this.cartContent;
+  }
 }
