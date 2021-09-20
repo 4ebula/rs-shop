@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $grey: #f7f8fa;
 $white: #fff;
 $text-black: #1a1a1a;
@@ -11,12 +13,12 @@ $border: 1px solid $border-grey;
 
 @mixin typography($size: 16, $weight: 400, $line: 32, $color: $text-black, $family: "Arial", $spacing: 0px) {
   font: {
-    size: $size / 16 * 1rem;
+    size: math.div($size, 16) * 1rem;
     weight: $weight;
     family: $family, sans-serif;
   }
 
-  line-height: $line / 16 * 1rem;
+  line-height: math.div($line, 16) * 1rem;
   letter-spacing: $spacing;
   color: $color;
 }
