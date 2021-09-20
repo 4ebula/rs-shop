@@ -19,6 +19,6 @@
     <span>Самовывоз: сегодня</span>
   </div>
   <div [class.zero]="amount === 0">
-    <span>{{ calculateSum() }}</span><span>р.</span>
+    <span>{{ sum | number: '1.2-2' }}</span><span>р.</span>
   </div>
 </ng-container>

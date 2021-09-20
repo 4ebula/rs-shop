@@ -73,6 +73,7 @@
 
   span:first-child {
     @include typography(12, 400, 12, #434343);
+    margin-right: 7px;
   }
 
   span:last-child {

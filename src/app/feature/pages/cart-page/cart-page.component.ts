@@ -13,11 +13,17 @@ export class CartPageComponent {
 
   products: ICart[];
 
+  sum: number = 0;
+
   constructor(private cartService: CartService) {
     this.products = this.cartService.getItems();
   }
 
   checkIfCartHasProducts(): boolean {
     return !!this.cartService.getAmountInCart();
+  }
+
+  calculateSum(sum: number): void {
+    this.sum += sum;
   }
 }

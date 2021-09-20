@@ -11,10 +11,11 @@
         <span>Доставка</span>
         <span>Стоимость</span>
       </div>
-      <app-cart-item *ngFor="let product of products" [cartItem]="product"></app-cart-item>
+      <app-cart-item *ngFor="let product of products" [cartItem]="product" (increaseToll)="calculateSum($event)">
+      </app-cart-item>
       <div class="total">
         <span>Общая стоимость:</span>
-        <span>777 р.</span>
+        <span>{{ sum | number: '1.2-2'}} р.</span>
       </div>
       <div class="checkout"><button>Оформить заказ</button></div>
     </div>

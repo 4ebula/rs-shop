@@ -13,7 +13,7 @@ import { ProductsService } from '@feature/services/products/products.service';
 export class CartItemComponent implements OnInit {
   @Input() cartItem!: ICart;
 
-  @Output() increaseToll = new EventEmitter();
+  @Output() increaseToll: EventEmitter<number> = new EventEmitter();
 
   product!: IProduct;
 
@@ -21,11 +21,15 @@ export class CartItemComponent implements OnInit {
 
   isLoaded!: Promise<boolean>;
 
+  sum!: number;
+
   constructor(private cartService: CartService, private productService: ProductsService) {}
 
   ngOnInit(): void {
     this.productService.getProduct(this.cartItem.id).subscribe((res) => {
       this.product = res;
+      this.sum = this.product.price * this.amount;
+      this.increaseToll.emit(this.sum);
       this.isLoaded = Promise.resolve(true);
     });
     this.amount = this.cartItem.amount;
@@ -33,16 +37,19 @@ export class CartItemComponent implements OnInit {
 
   increaseAmount(): void {
     this.amount += 1;
+    this.calculateSum(false);
   }
 
   decreaseAmount(): void {
     if (this.amount > 0) {
       this.amount -= 1;
+      this.calculateSum(true);
     }
   }
 
-  calculateSum(): number {
-    return this.product.price * this.amount;
+  calculateSum(decrease: boolean): void {
+    this.sum = this.product.price * this.amount;
+    this.increaseToll.emit(this.product.price * (decrease ? -1 : 1));
   }
 
   generateLink(): string {
