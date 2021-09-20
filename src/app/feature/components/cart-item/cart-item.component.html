@@ -4,13 +4,13 @@
     <button>удалить</button>
   </div>
   <div class="product-name">
-    <a>{{ product.name }}</a>
+    <a routerLink="{{ generateLink() }}">{{ product.name }}</a>
   </div>
   <div></div>
   <div>
     <div class="amount">
       <button (click)="decreaseAmount()">-</button>
-      <input type="number" [(ngModel)]="amount">
+      <input type="number" [(ngModel)]="amount" [class.zero]="amount === 0">
       <button (click)="increaseAmount()">+</button>
     </div>
   </div>
@@ -18,7 +18,7 @@
     <span>Курьером: завтра</span>
     <span>Самовывоз: сегодня</span>
   </div>
-  <div>
+  <div [class.zero]="amount === 0">
     <span>{{ calculateSum() }}</span><span>р.</span>
   </div>
 </ng-container>

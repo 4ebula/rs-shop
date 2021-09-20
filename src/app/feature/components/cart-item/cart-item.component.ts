@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { ICart } from '@feature/models/cart.model';
 import { IProduct } from '@feature/models/product.model';
 import { CartService } from '@feature/services/cart/cart.service';
@@ -11,6 +12,8 @@ import { ProductsService } from '@feature/services/products/products.service';
 })
 export class CartItemComponent implements OnInit {
   @Input() cartItem!: ICart;
+
+  @Output() increaseToll = new EventEmitter();
 
   product!: IProduct;
 
@@ -40,5 +43,9 @@ export class CartItemComponent implements OnInit {
 
   calculateSum(): number {
     return this.product.price * this.amount;
+  }
+
+  generateLink(): string {
+    return `/${this.product.subCategory}/${this.product.id}`;
   }
 }

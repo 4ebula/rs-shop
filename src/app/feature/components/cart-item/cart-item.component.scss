@@ -79,10 +79,15 @@
   & > div:nth-child(6) {
     display: flex;
     justify-content: flex-end;
+    color: #000;
 
     span {
-      @include typography(14, 400, 14, #000);
+      @include typography(14, 400, 14, inherit);
       margin-left: 5px;
+    }
+
+    &.zero {
+      color: #999;
     }
   }
 }
@@ -131,6 +136,10 @@
 
     &[type="number"] {
       -moz-appearance: textfield;
+    }
+
+    &.zero {
+      color: #999;
     }
   }
 }
