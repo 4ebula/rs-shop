@@ -38,7 +38,7 @@
   ],
   "editor.codeActionsOnSave": {
       "source.fixAll": true,
-      "source.organizeImports": true
+      "source.organizeImports": false
   },
   "typescript.updateImportsOnFileMove.enabled": "always"
 }

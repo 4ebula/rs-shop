@@ -24,7 +24,9 @@ module.exports = {
       rules: {
         "import/prefer-default-export": "off",
         "no-console": ["warn", { allow: ["warn", "error"] }],
-        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "import/order": ["error", { "newlines-between": "ignore" },
+        ]
       },
       plugins: ['import']
     },
