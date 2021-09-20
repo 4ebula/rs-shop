@@ -1,6 +1,8 @@
 @import "../../../../variables.scss";
 
 :host {
+  background-color: transparent;
+
   button {
     position: relative;
     @include flexCentered;
@@ -34,9 +36,11 @@
   }
 
   &:hover {
-    background-color: #fff;
-    border-color: #fff;
-    box-shadow: 0 2px 4px #1723260d;
+    button {
+      background-color: #fff;
+      border-color: #fff;
+      box-shadow: 0 2px 4px #1723260d;
+    }
   }
 
   button:active,
