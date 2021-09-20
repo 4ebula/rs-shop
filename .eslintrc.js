@@ -22,7 +22,9 @@ module.exports = {
         'plugin:prettier/recommended',
       ],
       rules: {
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "no-console": ["warn", { allow: ["warn", "error"] }],
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
       },
       plugins: ['import']
     },
