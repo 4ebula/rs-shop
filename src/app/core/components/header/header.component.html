@@ -15,10 +15,7 @@
     <div></div>
     <span>Аккаунт</span>
   </button>
-  <button class="btn btn_header btn_cart">
-    <div [inlineSVG]="'../../../../assets/icons/cart.svg'"></div>
-    <span>Корзина</span>
-  </button>
+  <app-header-cart-button></app-header-cart-button>
 </div>
 <app-category-navigation></app-category-navigation>
 <app-catalog-popup *ngIf="isCategoriesOpened" (appClosePopup)="closePopup()"></app-catalog-popup>

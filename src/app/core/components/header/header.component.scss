@@ -125,30 +125,6 @@
         border-top: 5px solid;
       }
     }
-
-    .btn_cart {
-      position: relative;
-
-      div {
-        position: absolute;
-        top: 11px;
-        left: 18px;
-        width: 20px;
-        height: 20px;
-        color: $text-black;
-      }
-
-      &:active {
-        border-color: transparent;
-        background: #ebedf0;
-        color: #909399;
-        box-shadow: none;
-
-        div {
-          color: #909399;
-        }
-      }
-    }
   }
 }
 
