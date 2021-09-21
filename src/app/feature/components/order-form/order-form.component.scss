@@ -62,6 +62,7 @@ legend {
 .reverse {
   display: flex;
   flex-direction: column-reverse;
+  position: relative;
 }
 
 .address {
@@ -135,7 +136,7 @@ legend {
   }
 
   select {
-    flex-basis: 28%;
+    width: 30%;
     height: 28px;
     margin-right: 10px;
     border: 1px solid #bebebe;
@@ -144,7 +145,7 @@ legend {
 
     -webkit-appearance: none;
     -moz-appearance: none;
-    text-indent: 11px;
+    text-indent: 8px;
     text-overflow: "";
   }
 }
@@ -211,4 +212,10 @@ legend {
   &:hover {
     background-color: #005b96;
   }
+}
+
+.alert {
+  position: absolute;
+  top: 54px;
+  @include typography(8, 400, 10, #f00);
 }
