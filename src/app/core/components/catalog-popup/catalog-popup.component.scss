@@ -1,0 +1,157 @@
+@import "../../../../variables.scss";
+
+:host {
+  display: block;
+  position: absolute;
+  top: 130px;
+  left: 0;
+  width: 100%;
+  height: 600px;
+  background-color: #fff;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.catalog {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+}
+
+.catalog-categories {
+  max-width: 22%;
+  border-right: 1px solid #e6e7e9;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      padding: 0 20px;
+      height: 32px;
+      cursor: pointer;
+      @include typography(14, 400, 16);
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        color: $hover-text;
+        background-color: $hover-background;
+      }
+    }
+  }
+}
+
+.catalog-items {
+  flex-grow: 1;
+  padding-left: 40px;
+
+  h3 {
+    @include typography(28, 400, 32);
+    margin-top: 14px;
+  }
+}
+
+.catalog-items_brands {
+  margin-top: 16px;
+
+  ul {
+    display: flex;
+
+    li {
+      @include typography(10, 400, 12, $text-grey);
+      padding: 4px 16px;
+      height: 32px;
+      margin-right: 4px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid #e6e7e9;
+      box-sizing: border-box;
+      border-radius: 80px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        color: $hover-text;
+        background-color: $hover-background;
+        border-color: transparent;
+      }
+    }
+  }
+}
+
+.catalog-items_lists {
+  display: flex;
+  margin-top: 24px;
+}
+
+.catalog-items_list,
+.podborki {
+  flex-grow: 1;
+}
+
+.catalog-items_list_item {
+  margin-bottom: 24px;
+
+  h4 {
+    @include typography(16, 600, 22);
+    cursor: pointer;
+  }
+
+  ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    li {
+      margin-top: 8px;
+
+      a {
+        @include typography(14, 400, 20);
+      }
+    }
+  }
+
+  h4:hover,
+  ul li a:hover {
+    color: $hover-text;
+  }
+}
+
+.compilations {
+  & > span {
+    text-transform: uppercase;
+    @include typography(11, 400, 13, $text-grey);
+  }
+
+  ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    li {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 242px;
+      height: 50px;
+      margin-top: 8px;
+      padding-left: 52px;
+      border: 1px solid #e6e7e9;
+      border-radius: 8px;
+      color: #1a1a1a;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+
+      &:hover {
+        border: 1px solid #fff;
+        background-color: #fff;
+        box-shadow: 0 2px 2px rgb(41 44 51 / 4%), 0 4px 12px rgb(41 44 51 / 12%);
+        color: #e52e6b;
+      }
+    }
+  }
+}

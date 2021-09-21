@@ -1,0 +1,95 @@
+<form>
+
+  <fieldset class="personal-data">
+    <legend>Личные данные</legend>
+    <div class="reverse">
+      <input type="text" name="personalName" id="personalName">
+      <label for="personalName">Имя Фамилия:</label>
+    </div>
+    <div class="reverse">
+      <input type="text" name="email" id="email" required>
+      <label for="email">E-mail:</label>
+    </div>
+  </fieldset>
+
+  <fieldset class="delivery">
+    <legend>Доставка</legend>
+
+    <div class="reverse">
+      <input type="select" name="city" id="city">
+      <label for="city">Город/населенный пункт:</label>
+    </div>
+
+    <div class="delivery_options">
+      <div>
+        <input type="radio" name="deliveryOption" id="deliveryCourier" checked>
+        <label for="deliveryCourier">курьером до клинета — 6,00 р.</label>
+      </div>
+      <div>
+        <input type="radio" name="deliveryOption" id="deliverySelf">
+        <label for="deliverySelf">самовывоз в Минск — бесплатно</label>
+      </div>
+    </div>
+
+    <div class="address">
+      <div class="reverse">
+        <input type="text" name="address" id="address" placeholder="улица, дом" required>
+        <label for="address">Адрес доставки:</label>
+      </div>
+      <div>
+        <input type="text" name="entrance" placeholder="подъезд">
+        <input type="text" name="floor" placeholder="этаж">
+        <input type="text" name="flat" placeholder="квартира" required>
+      </div>
+    </div>
+
+    <div class="time">
+      <p>Время доставки</p>
+      <select name="" id="">
+        <option value="">Выберите дату</option>
+        <option value="1">thursday, 23 sept</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+      <select name="" id="" disabled>
+        <option>Выберите время</option>
+        <option>11:00-14:00</option>
+        <option>12:00-15:00</option>
+        <option>13:00-16:00</option>
+        <option>4</option>
+      </select>
+    </div>
+
+    <div class="phone reverse">
+      <input type="tel" name="tel" id="tel" placeholder="+375 29 111 11 11" required>
+      <label for="tel">Телефон</label>
+    </div>
+
+    <div class="comments"><label for="comments">Комментарии:</label>
+      <textarea name="" id="comments" cols="30" rows="10"
+        placeholder="Введите номер и серию сертификата, если таковой имеется."></textarea>
+    </div>
+  </fieldset>
+
+  <fieldset class="payment">
+    <legend>Оплата при получении</legend>
+    <div>
+      <input type="radio" name="payment" id="cash" checked>
+      <label for="cash">наличными</label>
+    </div>
+    <div>
+      <input type="radio" name="payment" id="card">
+      <label for="card">картой</label>
+    </div>
+  </fieldset>
+
+  <div class="total">
+    <span>Поля, обязательные для заполнения</span>
+    <div>
+      <span>Стоимость заказа с доставкой: <span>HERE IS TOLL</span>р.</span>
+    </div>
+    <button class="submit" type="submit">Подтвердить заказ</button>
+  </div>
+</form>

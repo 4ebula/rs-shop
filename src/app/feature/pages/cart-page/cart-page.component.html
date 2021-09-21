@@ -1,0 +1,29 @@
+<div>
+  <h3>Оформление заказа</h3>
+  <div [ngSwitch]="checkIfCartHasProducts()">
+    <div class="cart-content" *ngSwitchCase="true">
+      <h4>Список товаров</h4>
+      <div class="cart-item_header">
+        <span></span>
+        <span>Товар</span>
+        <span>Дополнительные услуги</span>
+        <span>Количество</span>
+        <span>Доставка</span>
+        <span>Стоимость</span>
+      </div>
+      <app-cart-item *ngFor="let product of products" [cartItem]="product" (increaseToll)="calculateSum($event)">
+      </app-cart-item>
+      <div class="total">
+        <span>Общая стоимость:</span>
+        <span>{{ sum | number: '1.2-2'}} р.</span>
+      </div>
+      <ng-container *ngIf="!orderIsReady;else orderForm">
+        <div class="checkout"><button (click)="submitOrder()">Оформить заказ</button></div>
+      </ng-container>
+      <ng-template #orderForm>
+        <app-order-form [total]="sum"></app-order-form>
+      </ng-template>
+    </div>
+    <p class="empty" *ngSwitchDefault>Ваша корзина пуста</p>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="catalog">
+  <div class="catalog-categories">
+    <ul>
+      <li *ngFor="let category of categories" [attr.catId]="category.id">{{ category.name }}</li>
+    </ul>
+  </div>
+  <div class="catalog-items">
+    <h3>{{ currentCategory.name }}</h3>
+    <div class="catalog-items_brands">
+      <ul>
+        <li>Tefal</li>
+        <li>Bosch</li>
+        <li>LG</li>
+      </ul>
+    </div>
+
+    <div class="catalog-items_lists">
+      <div class="catalog-items_list">
+        <div class="catalog-items_list_item">
+          <ul>
+            <li *ngFor="let subCat of currentCategory.subCategories">
+              <a routerLink="/{{ subCat.id }}">{{ subCat.name }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="compilations">
+        <span>Подборки</span>
+        <ul>
+          <li>Игровые ноутбуки</li>
+          <li>Ультрабуки</li>
+          <li>Кабели</li>
+          <li>Мониторы</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

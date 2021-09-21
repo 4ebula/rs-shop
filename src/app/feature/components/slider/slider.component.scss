@@ -1,0 +1,72 @@
+@import "../../../../variables.scss";
+
+:host {
+  display: block;
+  position: relative;
+  width: 722px;
+  height: 362px;
+  box-sizing: border-box;
+  margin: 0;
+  overflow-x: hidden;
+  border: 1px solid #e2e2e2;
+
+  .slider {
+    display: flex;
+    width: fit-content;
+    transition-property: margin-left;
+    transition-timing-function: ease-in-out;
+
+    & > div {
+      width: 720px;
+      height: 360px;
+      background-size: cover;
+    }
+  }
+
+  .slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .switcher {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    box-sizing: border-box;
+    width: 196px;
+    height: 51px;
+    padding: 18px;
+
+    ul {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #1a1a1a4a;
+    }
+    ul > li {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #ccc;
+      margin: 0 4px;
+      cursor: pointer;
+    }
+  }
+}

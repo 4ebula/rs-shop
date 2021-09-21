@@ -1,0 +1,30 @@
+<div *ngIf="isLoaded | async">
+  <app-breadcrumbs [paths]="generatePaths()"></app-breadcrumbs>
+  <h3>{{ category.name }}</h3>
+  <div class="filters"></div>
+  <div class="sort"></div>
+  <div class="page">
+    <div>
+      <button>+</button>
+      <span>Страница</span>
+      <button>+</button>
+    </div>
+  </div>
+  <div class="products">
+    <div class="product" *ngFor="let product of products">
+      <div><img src="{{product.imageUrls[0]}}" alt=""></div>
+      <div>
+        <app-product-stock [available]="product.availableAmount"></app-product-stock>
+        <div class="product-charactirestics">
+          <div class="product-description">
+            <h4 class="product-name"><a routerLink="{{product.id}}">{{ product.name }}</a></h4>
+            <div class="descritrion">
+              <p>{{ product.description }}</p>
+            </div>
+          </div>
+          <app-product-price [product]="product" [isInProduct]="false"></app-product-price>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

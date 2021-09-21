@@ -1,0 +1,44 @@
+@import "../../../../variables.scss";
+
+:host {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  @include flexCentered;
+  top: 0;
+  left: 0;
+  background-color: #1a1a1a70;
+  z-index: 100;
+}
+
+.container {
+  overflow: hidden;
+  width: 480px;
+  height: 480px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 5px;
+
+  button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    @include typography(50, 100, 50, #dadce0);
+
+    &:hover {
+      color: #909294;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@use "sass:math";
+
+$grey: #f7f8fa;
+$white: #fff;
+$text-black: #1a1a1a;
+$text-grey: #909399;
+$text-blue: #0072bc;
+$hover-text: #d62761;
+$hover-background: #fcedf2;
+$border-grey: #d5d7db66;
+
+$border: 1px solid $border-grey;
+
+@mixin typography($size: 16, $weight: 400, $line: 32, $color: $text-black, $family: "Arial", $spacing: 0px) {
+  font: {
+    size: math.div($size, 16) * 1rem;
+    weight: $weight;
+    family: $family, sans-serif;
+  }
+
+  line-height: math.div($line, 16) * 1rem;
+  letter-spacing: $spacing;
+  color: $color;
+}
+
+@mixin flexCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin mainHost {
+  display: block;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50px 0;
+  margin-bottom: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+
+  & > div {
+    width: 80%;
+    margin: 0 auto;
+  }
+}

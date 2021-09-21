@@ -1,0 +1,30 @@
+@import "../../../../variables.scss";
+
+:host {
+  @include mainHost;
+
+  .headline {
+    display: flex;
+    width: fit-content;
+
+    & > span {
+      display: block;
+    }
+  }
+  .headline span:first-child {
+    @include typography(124, 400, 124, #ea1654);
+    margin-right: 30px;
+  }
+
+  .headline span:last-child {
+    @include typography(62, 400, 62);
+    width: 350px;
+  }
+
+  p {
+    margin-top: 20px;
+    width: 480px;
+    @include typography(13, 400, 15);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}

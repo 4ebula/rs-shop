@@ -1,0 +1,62 @@
+@import "../../../../variables.scss";
+
+:host {
+  background-color: transparent;
+
+  button {
+    position: relative;
+    @include flexCentered;
+    border: 1px solid #d5d7db;
+    border-radius: 40px;
+    width: 159px;
+    height: 40px;
+    transition: 0.2s ease;
+
+    div {
+      position: absolute;
+      transition: 0.2s ease;
+      top: 11px;
+      left: 18px;
+      width: 20px;
+      height: 20px;
+      color: $text-black;
+    }
+
+    span {
+      position: absolute;
+      @include flexCentered;
+      width: 13px;
+      height: 13px;
+      top: 5px;
+      left: 29px;
+      border-radius: 50%;
+      background-color: #db215f;
+      @include typography(8, 400, 8, #fff);
+    }
+  }
+
+  &:hover {
+    button {
+      background-color: #fff;
+      border-color: #fff;
+      box-shadow: 0 2px 4px #1723260d;
+    }
+  }
+
+  button:active,
+  button.active,
+  button.active:hover {
+    border-color: transparent;
+    background-color: #ebedf0;
+    color: $text-grey;
+    box-shadow: none;
+
+    div {
+      color: $text-grey;
+    }
+
+    span {
+      background-color: #919191;
+    }
+  }
+}
