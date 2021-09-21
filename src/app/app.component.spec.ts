@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PopupService } from '@core/services/popup/popup.service';
@@ -17,6 +18,7 @@ describe('AppComponent', () => {
       imports: [RouterTestingModule],
       declarations: [AppComponent],
       providers: [{ provide: PopupService, useValue: popServTest }],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

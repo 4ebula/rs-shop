@@ -21,4 +21,11 @@ describe('ProductRatingComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should select own class name', () => {
+    component.rating = 3;
+    component.ngOnInit();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.className).toBe('three');
+  });
 });
