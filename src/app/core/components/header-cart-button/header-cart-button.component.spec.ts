@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 import { HeaderCartButtonComponent } from './header-cart-button.component';
 
@@ -9,6 +12,7 @@ describe('CartButtonComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderCartButtonComponent],
+      imports: [InlineSVGModule, RouterTestingModule, HttpClientTestingModule],
     }).compileComponents();
   });
 

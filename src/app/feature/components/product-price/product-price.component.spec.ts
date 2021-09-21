@@ -15,6 +15,20 @@ describe('ProductPriceComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductPriceComponent);
     component = fixture.componentInstance;
+    component.product = {
+      id: 'Test',
+      name: 'Test',
+      imageUrls: [''],
+      availableAmount: 1,
+      price: 111,
+      rating: 5,
+      description: 'Test',
+      isInCart: false,
+      isFavorite: false,
+      category: 'Test',
+      subCategory: 'Test',
+    };
+    component.isInProduct = true;
     fixture.detectChanges();
   });
 

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   sub!: Subscription;
 
-  constructor(private router: Router, public zone: NgZone, public ref: ChangeDetectorRef) {}
+  constructor(private router: Router) {}
 
   showCategories(): void {
     this.isCategoriesOpened = !this.isCategoriesOpened;

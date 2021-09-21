@@ -13,4 +13,14 @@ describe('CartService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('getAmountInCart', () => {
+    service.addToCart('Test');
+    expect(service.getAmountInCart()).toBe(service.getItems().length);
+  });
+
+  it('findInCart', () => {
+    service.addToCart('Test');
+    expect(service.findInCart('notTest')).toBe(false);
+  });
 });

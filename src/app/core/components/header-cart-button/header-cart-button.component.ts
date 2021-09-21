@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
 import { CartService } from '@feature/services/cart/cart.service';
@@ -18,11 +18,7 @@ export class HeaderCartButtonComponent implements OnInit, OnDestroy {
 
   sub: Subscription = new Subscription();
 
-  constructor(
-    private cartService: CartService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
+  constructor(private cartService: CartService, private router: Router) {
     this.amountInCart = this.cartService.getAmountInCart();
   }
 
