@@ -15,6 +15,9 @@ export class CartPageComponent {
 
   sum: number = 0;
 
+  // SET BACK TO FALSE
+  orderIsReady: boolean = true;
+
   constructor(private cartService: CartService) {
     this.products = this.cartService.getItems();
   }
@@ -25,5 +28,9 @@ export class CartPageComponent {
 
   calculateSum(sum: number): void {
     this.sum += sum;
+  }
+
+  submitOrder(): void {
+    this.orderIsReady = true;
   }
 }

@@ -10,11 +10,14 @@ article,
 main,
 div,
 form,
-input {
+input,
+fieldset {
   box-sizing: border-box;
 }
 
 button {
+  border: none;
+  outline: none;
   cursor: pointer;
 }
 
@@ -24,4 +27,9 @@ li {
 
 a {
   text-decoration: none;
+}
+
+fieldset {
+  border: none;
+  outline: none;
 }

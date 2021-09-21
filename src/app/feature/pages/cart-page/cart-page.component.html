@@ -17,7 +17,12 @@
         <span>Общая стоимость:</span>
         <span>{{ sum | number: '1.2-2'}} р.</span>
       </div>
-      <div class="checkout"><button>Оформить заказ</button></div>
+      <ng-container *ngIf="!orderIsReady;else orderForm">
+        <div class="checkout"><button (click)="submitOrder()">Оформить заказ</button></div>
+      </ng-container>
+      <ng-template #orderForm>
+        <app-order-form [total]="sum"></app-order-form>
+      </ng-template>
     </div>
     <p class="empty" *ngSwitchDefault>Ваша корзина пуста</p>
   </div>
