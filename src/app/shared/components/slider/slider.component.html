@@ -1,14 +1,38 @@
-<ng-container [ngSwitch]="settings">
-  <div *ngSwitchDefault class="slider" [ngStyle]="transitionSettings" (transitionend)="transitionEnd()">
-    <div *ngFor="let slide of slidesNum, index as i" [style.order]="slide" class="slide">
-      <img src="{{ sliderInfo[i].picture }}" alt="">
-      <a href="{{ sliderInfo[i].link }}"></a>
+<ng-container [ngSwitch]="name">
+  <div *ngSwitchCase="'product'" class="padding">
+    <div class="product_controls left" [class.disabled]="currentNum === 0" (click)="hanleSlide(false)"></div>
+    <div class="product_controls right" [class.disabled]="currentNum === sliderInfo.length - 1"
+      (click)="hanleSlide(true)">
+    </div>
+    <div class=" slider product">
+      <div *ngFor="let slide of slidesNum, index as i" [style.order]="slide" [ngStyle]="transitionSettingsProd"
+        class="slide">
+        <div *ngFor="let slideContent of sliderInfo[i]" class="product_item">
+          <div class="product_image">
+            <img src="{{ slideContent.img }}" alt="">
+          </div>
+          <div class="product_info">
+            <a href="{{ generateLink(slideContent) }}">{{ slideContent.name }}</a>
+            <app-product-rating [rating]="slideContent.rating" class="product_rating"></app-product-rating>
+            <span class="price">{{ slideContent.price | number: '1.2-2'}}</span>
+          </div>
+          <div class="product_label"></div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class=" switcher">
-    <ul>
-      <li *ngFor="let slide of slidesNum, index as i" [style.backgroundColor]="colorSwitch(slide)"
-        (click)="changeSlide(i)"></li>
-    </ul>
+  <div class="border" *ngSwitchDefault>
+    <div class="slider default" [ngStyle]="transitionSettings" (transitionend)="transitionEnd()">
+      <div *ngFor="let slide of slidesNum, index as i" [style.order]="slide" class="slide">
+        <img src="{{ sliderInfo[i].picture }}" alt="">
+        <a href="{{ sliderInfo[i].link }}"></a>
+      </div>
+    </div>
+    <div class=" switcher">
+      <ul>
+        <li *ngFor="let slide of slidesNum, index as i" [style.backgroundColor]="colorSwitch(slide)"
+          (click)="changeSlide(i)"></li>
+      </ul>
+    </div>
   </div>
 </ng-container>

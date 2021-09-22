@@ -3,42 +3,42 @@ import { ISliderInfo } from '../../models/slider-info.model';
 export const SLIDER_INFO: ISliderInfo[] = [
   {
     picture: 'assets/slides/slide-1.jpg',
-    link: '/smth1',
+    link: '/refrigerators',
   },
   {
     picture: 'assets/slides/slide-2.jpg',
-    link: '/smth2',
+    link: '/books',
   },
   {
     picture: 'assets/slides/slide-3.jpg',
-    link: '/smth3',
+    link: '/mobile',
   },
   {
     picture: 'assets/slides/slide-4.jpg',
-    link: '/smth4',
+    link: '/armchairs',
   },
   {
     picture: 'assets/slides/slide-5.jpg',
-    link: '/smth5',
+    link: '/washing-machines',
   },
   {
     picture: 'assets/slides/slide-6.jpg',
-    link: '/smth6',
+    link: '/tvs',
   },
   {
     picture: 'assets/slides/slide-7.jpg',
-    link: '/smth7',
+    link: '/microwaves',
   },
   {
     picture: 'assets/slides/slide-8.jpg',
-    link: '/smth8',
+    link: '/freezers',
   },
   {
     picture: 'assets/slides/slide-9.jpg',
-    link: '/smth9',
+    link: '/teapots',
   },
   {
     picture: 'assets/slides/slide-10.jpg',
-    link: '/smth10',
+    link: '/beds',
   },
 ];

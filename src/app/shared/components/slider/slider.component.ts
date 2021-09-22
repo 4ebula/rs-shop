@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 
 import { ISliderInfo } from '@shared/models/slider-info.model';
-import { DEFAULT_SETTINGS, ISliderSettings } from '@shared/models/slider.model';
+import { DEFAULT_SETTINGS, ISliderProduct, ISliderSettings } from '@shared/models/slider.model';
 import { SLIDER_INFO } from './constants';
 
 @Component({
@@ -12,30 +12,43 @@ import { SLIDER_INFO } from './constants';
 export class SliderComponent implements OnInit {
   @Input() settings!: ISliderSettings;
 
-  amountOfSlides: number = 10;
+  @Input() name!: string;
 
-  slidesNum: number[] = Array.from({ length: this.amountOfSlides }, (_, i) => i + 1);
+  @Input() sliderInfo!: ISliderInfo[] | any;
+
+  config: ISliderSettings;
+
+  slidesNum!: number[];
+
+  scrollWidth!: number;
 
   transitionSettings = {
     'margin-left.px': 0,
     'transition-duration.ms': 0,
   };
 
-  sliderInfo: ISliderInfo[] = SLIDER_INFO;
+  transitionSettingsProd = {
+    'left.px': 0,
+  };
 
-  constructor(private changeDetection: ChangeDetectorRef) {
-    this.settings = DEFAULT_SETTINGS;
+  currentNum: number = 0;
+
+  constructor(private elemRef: ElementRef) {
+    this.config = { ...DEFAULT_SETTINGS };
   }
 
   ngOnInit(): void {
-    this.changeDetection.detectChanges();
+    Object.assign(this.config, { ...this.settings });
+    if (this.name === 'default') this.sliderInfo = SLIDER_INFO;
     this.applySettings();
   }
 
   applySettings(): void {
-    if (this.settings.automated) {
+    if (this.config.automated) {
       setInterval(() => this.delayTransition(), 5000);
     }
+    this.slidesNum = Array.from({ length: this.config.slidesAmount }, (_, i) => i + 1);
+    this.scrollWidth = this.elemRef.nativeElement.offsetWidth > 370 ? 720 : 360;
   }
 
   transitionEnd(): void {
@@ -47,7 +60,7 @@ export class SliderComponent implements OnInit {
 
   delayTransition(): void {
     this.transitionSettings['transition-duration.ms'] = 700;
-    this.transitionSettings['margin-left.px'] = -720;
+    this.transitionSettings['margin-left.px'] = -this.scrollWidth;
   }
 
   colorSwitch = (slide: number): string => {
@@ -56,8 +69,19 @@ export class SliderComponent implements OnInit {
   };
 
   changeSlide = (slide: number): void => {
-    const tempArray = Array.from({ length: this.amountOfSlides }, (_, i) => i + 1);
+    const tempArray = Array.from({ length: this.config.slidesAmount }, (_, i) => i + 1);
     const remainingArray = tempArray.splice(tempArray.length - slide);
     this.slidesNum = [...remainingArray, ...tempArray];
+  };
+
+  hanleSlide(dir: boolean): void {
+    if (!dir && this.currentNum === 0) return;
+    if (dir && this.currentNum === this.sliderInfo.length - 1) return;
+    this.currentNum += dir ? 1 : -1;
+    this.transitionSettingsProd['left.px'] = -this.scrollWidth * this.currentNum;
+  }
+
+  generateLink = (prod: ISliderProduct): string => {
+    return `/${prod.category}/${prod.id}`;
   };
 }
