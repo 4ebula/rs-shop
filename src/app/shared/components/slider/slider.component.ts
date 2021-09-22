@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
-import { ISliderInfo } from '@feature/models/slider-info.model';
+import { ISliderInfo } from '@shared/models/slider-info.model';
+import { DEFAULT_SETTINGS, ISliderSettings } from '@shared/models/slider.model';
 import { SLIDER_INFO } from './constants';
 
 @Component({
@@ -9,6 +10,8 @@ import { SLIDER_INFO } from './constants';
   styleUrls: ['./slider.component.scss'],
 })
 export class SliderComponent implements OnInit {
+  @Input() settings!: ISliderSettings;
+
   amountOfSlides: number = 10;
 
   slidesNum: number[] = Array.from({ length: this.amountOfSlides }, (_, i) => i + 1);
@@ -20,8 +23,19 @@ export class SliderComponent implements OnInit {
 
   sliderInfo: ISliderInfo[] = SLIDER_INFO;
 
+  constructor(private changeDetection: ChangeDetectorRef) {
+    this.settings = DEFAULT_SETTINGS;
+  }
+
   ngOnInit(): void {
-    setInterval(() => this.delayTransition(), 5000);
+    this.changeDetection.detectChanges();
+    this.applySettings();
+  }
+
+  applySettings(): void {
+    if (this.settings.automated) {
+      setInterval(() => this.delayTransition(), 5000);
+    }
   }
 
   transitionEnd(): void {

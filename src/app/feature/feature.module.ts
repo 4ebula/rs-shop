@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { InlineSVGModule } from 'ng-inline-svg';
 
+import { SharedModule } from '@shared/shared.module';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
-import { SliderComponent } from './components/slider/slider.component';
 import { FeatureRoutingModule } from './feature-routing.module';
 import { CategoryProductComponent } from './pages/category-product/category-product.component';
 import { MainCategoryComponent } from './pages/main-category/main-category.component';
@@ -22,7 +22,6 @@ import { OrderFormComponent } from './components/order-form/order-form.component
 
 @NgModule({
   declarations: [
-    SliderComponent,
     MainPageComponent,
     NotFoundPageComponent,
     MainCategoryComponent,
@@ -38,7 +37,13 @@ import { OrderFormComponent } from './components/order-form/order-form.component
     CartItemComponent,
     OrderFormComponent,
   ],
-  imports: [CommonModule, FormsModule, FeatureRoutingModule, InlineSVGModule.forRoot()],
+  imports: [
+    CommonModule,
+    FormsModule,
+    FeatureRoutingModule,
+    SharedModule,
+    InlineSVGModule.forRoot(),
+  ],
   exports: [MainPageComponent, NotFoundPageComponent],
 })
 export class FeatureModule {}

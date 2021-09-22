@@ -1,0 +1,14 @@
+<ng-container [ngSwitch]="settings">
+  <div *ngSwitchDefault class="slider" [ngStyle]="transitionSettings" (transitionend)="transitionEnd()">
+    <div *ngFor="let slide of slidesNum, index as i" [style.order]="slide" class="slide">
+      <img src="{{ sliderInfo[i].picture }}" alt="">
+      <a href="{{ sliderInfo[i].link }}"></a>
+    </div>
+  </div>
+  <div class=" switcher">
+    <ul>
+      <li *ngFor="let slide of slidesNum, index as i" [style.backgroundColor]="colorSwitch(slide)"
+        (click)="changeSlide(i)"></li>
+    </ul>
+  </div>
+</ng-container>
