@@ -35,8 +35,8 @@ export class CartPageComponent {
     this.orderIsReady = true;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   sendOrder(deliveryOptions: IOrder) {
-    console.log(deliveryOptions);
     this.popup.showPopup('order');
     this.cartService.epmtyCart();
   }

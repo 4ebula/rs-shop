@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const DEFAULT_LOCATION = 'Минск';
 
@@ -8,7 +8,7 @@ const DEFAULT_LOCATION = 'Минск';
   providedIn: 'root',
 })
 export class GeoService {
-  private geo = new Subject<string>();
+  private geo = new BehaviorSubject<string>('');
 
   public geo$ = this.geo.asObservable();
 
