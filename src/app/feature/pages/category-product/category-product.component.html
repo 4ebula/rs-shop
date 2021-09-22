@@ -12,7 +12,7 @@
   </div>
   <div class="products">
     <div class="product" *ngFor="let product of products">
-      <div><img src="{{product.imageUrls[0]}}" alt=""></div>
+      <div><img [src]="getImage(product)" alt=""></div>
       <div>
         <app-product-stock [available]="product.availableAmount"></app-product-stock>
         <div class="product-charactirestics">

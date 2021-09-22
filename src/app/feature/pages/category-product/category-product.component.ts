@@ -72,4 +72,8 @@ export class CategoryProductComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
+
+  getImage = (product: IProduct): string => {
+    return product.imageUrls.length === 0 ? './assets/default_preview.jpeg' : product.imageUrls[0];
+  };
 }
