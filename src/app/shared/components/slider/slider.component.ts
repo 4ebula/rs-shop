@@ -1,6 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 
-import { ISliderInfo } from '@shared/models/slider-info.model';
 import { DEFAULT_SETTINGS, ISliderProduct, ISliderSettings } from '@shared/models/slider.model';
 import { SLIDER_INFO } from './constants';
 
@@ -14,7 +13,7 @@ export class SliderComponent implements OnInit {
 
   @Input() name!: string;
 
-  @Input() sliderInfo!: ISliderInfo[] | any;
+  @Input() sliderInfo!: Array<ISliderProduct>[];
 
   config: ISliderSettings;
 
@@ -39,7 +38,7 @@ export class SliderComponent implements OnInit {
 
   ngOnInit(): void {
     Object.assign(this.config, { ...this.settings });
-    if (this.name === 'default') this.sliderInfo = SLIDER_INFO;
+    if (this.name === 'default') this.sliderInfo = SLIDER_INFO as Array<ISliderProduct>[];
     this.applySettings();
   }
 

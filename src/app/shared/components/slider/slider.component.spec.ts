@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SLIDER_INFO } from './constants';
 
 import { SliderComponent } from './slider.component';
 
@@ -15,6 +16,7 @@ describe('SliderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SliderComponent);
     component = fixture.componentInstance;
+    component.sliderInfo = SLIDER_INFO;
     fixture.detectChanges();
   });
 

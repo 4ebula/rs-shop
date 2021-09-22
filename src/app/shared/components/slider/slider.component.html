@@ -24,8 +24,8 @@
   <div class="border" *ngSwitchDefault>
     <div class="slider default" [ngStyle]="transitionSettings" (transitionend)="transitionEnd()">
       <div *ngFor="let slide of slidesNum, index as i" [style.order]="slide" class="slide">
-        <img src="{{ sliderInfo[i].picture }}" alt="">
-        <a href="{{ sliderInfo[i].link }}"></a>
+        <img src="{{ sliderInfo[0][i].img }}" alt="">
+        <a href="/{{ sliderInfo[0][i].category }}"></a>
       </div>
     </div>
     <div class=" switcher">
