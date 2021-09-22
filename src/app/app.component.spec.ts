@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PopupService } from '@core/services/popup/popup.service';
+import { PopupService } from '@shared/services/popup/popup.service';
 import { Observable } from 'rxjs';
 
 import { AppComponent } from './app.component';

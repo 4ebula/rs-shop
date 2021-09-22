@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GeoService } from '@core/services/geo/geo.service';
-import { PopupService } from '@core/services/popup/popup.service';
+import { PopupService } from '@shared/services/popup/popup.service';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { Observable } from 'rxjs';
 
