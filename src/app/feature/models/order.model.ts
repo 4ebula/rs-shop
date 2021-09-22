@@ -22,3 +22,10 @@ export interface IOrder {
   comments: string;
   payment: Payment;
 }
+
+export interface IAddress {
+  street: string;
+  apartment: string;
+  entrance?: string | null;
+  floor?: string | null;
+}

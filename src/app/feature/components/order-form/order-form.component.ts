@@ -1,15 +1,28 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { NgModel } from '@angular/forms';
-// import { IOrder, Payment } from '@feature/models/order.model';
-import { Payment } from '@feature/models/order.model';
+import { Subscription } from 'rxjs';
+
+import { GeoService } from '@core/services/geo/geo.service';
+// import { IOrder } from '@feature/models/order.model';
+import { IAddress, Payment } from '@feature/models/order.model';
 
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.scss'],
 })
-export class OrderFormComponent implements OnInit {
+export class OrderFormComponent implements OnInit, OnDestroy {
   @Input() total!: number;
+
+  @Output() closeForm = new EventEmitter<boolean>();
 
   email: string = '';
 
@@ -24,24 +37,48 @@ export class OrderFormComponent implements OnInit {
     time: '',
   };
 
+  address: IAddress = {
+    street: '',
+    apartment: '',
+    entrance: null,
+    floor: null,
+  };
+
   paymentMethod: Payment = Payment.cash;
 
   deliveryDates: string[];
 
   deliveryTime: string[];
 
-  constructor(private elem: ElementRef) {
+  mobNumberPattern = '^(\\+375)[0-9]{9}$';
+
+  mobileNumber!: string | number;
+
+  city!: string;
+
+  sub: Subscription = new Subscription();
+
+  isDeliveryDateTimeSelected = {
+    date: true,
+    time: true,
+  };
+
+  constructor(private elem: ElementRef, private geoServ: GeoService) {
     this.deliveryDates = this.getDays();
     this.deliveryTime = this.generateTime();
   }
 
   ngOnInit(): void {
-    this.elem.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    this.scrollUp();
+    const sub = this.geoServ.geo$.subscribe((res) => {
+      this.city = res;
+    });
+    this.sub.add(sub);
   }
 
-  show = (ev: any) => {
-    console.log(ev);
-  };
+  scrollUp(): void {
+    this.elem.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
   changeDeliveryOption(status: boolean) {
     this.total += 6 * (status ? 1 : -1);
@@ -61,12 +98,14 @@ export class OrderFormComponent implements OnInit {
     const index = target.options.selectedIndex;
     this.delivery.date = index > 0 ? this.deliveryDates[index - 1] : '';
     this.isDateSelected = index > 0;
+    this.isDeliveryDateTimeSelected.date = index > 0;
   }
 
   setDeliveryTime = (event: Event): void => {
     const target = event.target as HTMLSelectElement;
     const index = target.options.selectedIndex;
     this.delivery.time = index > 0 ? this.deliveryTime[index - 1] : '';
+    this.isDeliveryDateTimeSelected.time = index > 0;
   };
 
   getDays = (): string[] => {
@@ -96,8 +135,48 @@ export class OrderFormComponent implements OnInit {
     return arr;
   };
 
-  // eslint-disable-next-line class-methods-use-this
-  submitOrder(ele: NgModel): void {
-    console.log(ele.valid);
+  submitOrder(name: NgModel, phone: NgModel): void {
+    // eslint-disable-next-line @typescript-eslint/dot-notation
+    const { address, floor, city } = name.control['_parent'].controls;
+    let isFormValid: boolean = false;
+    if (this.isCourier) {
+      if (this.delivery.date === '') this.isDeliveryDateTimeSelected.date = false;
+      if (this.delivery.time === '') this.isDeliveryDateTimeSelected.time = false;
+
+      isFormValid =
+        this.isDeliveryDateTimeSelected.time &&
+        this.isDeliveryDateTimeSelected.date &&
+        !!phone.valid &&
+        !!name.valid &&
+        !!address.valid &&
+        !!city.valid &&
+        !!floor.valid;
+    } else {
+      isFormValid = !!name.valid && !!phone.valid;
+    }
+
+    if (isFormValid) {
+      console.log('Отправить');
+      console.log('Показать popup');
+      this.closeForm.emit(true);
+    } else {
+      this.scrollUp();
+      if (name.invalid) {
+        name.control.markAsTouched();
+      }
+      if (phone.invalid) {
+        phone.control.markAsTouched();
+      }
+      if (address.invalid) {
+        address.markAsTouched();
+      }
+      if (floor.invalid) {
+        floor.markAsTouched();
+      }
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

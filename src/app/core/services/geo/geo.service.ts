@@ -8,7 +8,7 @@ const DEFAULT_LOCATION = 'Минск';
   providedIn: 'root',
 })
 export class GeoService {
-  private geo = new Subject();
+  private geo = new Subject<string>();
 
   public geo$ = this.geo.asObservable();
 

@@ -1,4 +1,4 @@
-<form (submit)="submitOrder(inputName)">
+<form (submit)="submitOrder(inputName, mobNumber)">
 
   <fieldset class="personal-data">
     <legend>Личные данные</legend>
@@ -22,7 +22,7 @@
     <legend>Доставка</legend>
 
     <div class="reverse">
-      <input type="select" name="city" id="city">
+      <input type="select" name="city" id="city" [(ngModel)]="city">
       <label for="city">Город/населенный пункт:</label>
     </div>
 
@@ -41,13 +41,21 @@
 
     <div class="address" *ngIf="isCourier">
       <div class="reverse">
-        <input type="text" name="address" id="address" placeholder="улица, дом" required>
+        <input type="text" name="address" id="address" placeholder="улица, дом" #addressStreet="ngModel"
+          [(ngModel)]="address.street" required>
         <label for="address">Адрес доставки:</label>
+        <div *ngIf="addressStreet.invalid && (addressStreet.dirty || addressStreet.touched)" class="alert">
+          <span *ngIf="addressStreet.errors?.required">Это поле обязательно к заполнению</span>
+        </div>
       </div>
       <div>
-        <input type="text" name="entrance" placeholder="подъезд">
-        <input type="text" name="floor" placeholder="этаж">
-        <input type="text" name="apartment" placeholder="квартира" required>
+        <input type="text" name="entrance" placeholder="подъезд" [(ngModel)]="address.entrance">
+        <input type="text" name="floor" placeholder="этаж" [(ngModel)]="address.floor">
+        <input type="text" name="apartment" placeholder="квартира" [(ngModel)]="address.apartment"
+          #addressApartment="ngModel" required>
+        <div *ngIf="addressApartment.invalid && (addressApartment.dirty || addressApartment.touched)" class="alert">
+          <span *ngIf="addressApartment.errors?.required">Это поле обязательно к заполнению</span>
+        </div>
       </div>
     </div>
 
@@ -57,15 +65,26 @@
         <option value="">Выберите дату</option>
         <option *ngFor="let day of deliveryDates; let i = index" [value]="i + 1">{{ day }}</option>
       </select>
+      <div *ngIf="!isDeliveryDateTimeSelected.date" class="alert date">
+        <span>Выберите дату</span>
+      </div>
       <select name="" id="" (change)="setDeliveryTime($event)" [disabled]="!isDateSelected">
         <option>Выберите время</option>
         <option *ngFor="let time of deliveryTime; let i = index" [value]="i + 1">{{ time }}</option>
       </select>
+      <div *ngIf="!isDeliveryDateTimeSelected.time" class="alert alert_time">
+        <span>Выберите время</span>
+      </div>
     </div>
 
     <div class="phone reverse">
-      <input type="tel" name="tel" id="tel" placeholder="+375 29 111 11 11" required>
-      <label for="tel">Телефон</label>
+      <input type="tel" name="mobileNumber" [pattern]="mobNumberPattern" #mobNumber="ngModel" [ngModel]="mobileNumber"
+        id="tel" placeholder="+375 29 111 11 11" required>
+      <label for="mobileNumber">Телефон</label>
+      <div *ngIf="mobNumber.invalid && (mobNumber.dirty || mobNumber.touched)" class="alert">
+        <span *ngIf="mobNumber.errors?.required">Это поле обязательно к заполнению</span>
+        <span *ngIf="mobNumber.errors?.pattern">Mobile number not valid.</span>
+      </div>
     </div>
 
     <div class="comments"><label for="comments">Комментарии:</label>
