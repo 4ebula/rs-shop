@@ -15,7 +15,7 @@
 .container {
   overflow: hidden;
   width: 480px;
-  height: 480px;
+  height: fit-content;
   background-color: #fff;
   border-radius: 8px;
 }
@@ -41,4 +41,23 @@
       color: #909294;
     }
   }
+}
+
+.content {
+  height: fit-content;
+  padding: 10px;
+}
+
+.order {
+  height: 50px;
+  @include flexCentered;
+  h1 {
+    @include typography(24, 400, 26);
+  }
+}
+
+.geo {
+  width: 100%;
+  height: 15px;
+  background-color: red;
 }
