@@ -11,8 +11,7 @@ import { NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { GeoService } from '@core/services/geo/geo.service';
-// import { IOrder } from '@feature/models/order.model';
-import { IAddress, Payment } from '@feature/models/order.model';
+import { IOrder, IAddress, Payment, ILocation } from '@feature/models/order.model';
 
 @Component({
   selector: 'app-order-form',
@@ -23,6 +22,8 @@ export class OrderFormComponent implements OnInit, OnDestroy {
   @Input() total!: number;
 
   @Output() closeForm = new EventEmitter<boolean>();
+
+  @Output() deliveryOptions = new EventEmitter<IOrder>();
 
   email: string = '';
 
@@ -52,7 +53,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
 
   mobNumberPattern = '^(\\+375)[0-9]{9}$';
 
-  mobileNumber!: string | number;
+  mobileNumber!: string;
 
   city!: string;
 
@@ -62,6 +63,8 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     date: true,
     time: true,
   };
+
+  comments: string = '';
 
   constructor(private elem: ElementRef, private geoServ: GeoService) {
     this.deliveryDates = this.getDays();
@@ -156,8 +159,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     }
 
     if (isFormValid) {
-      console.log('Отправить');
-      console.log('Показать popup');
+      this.createOrder();
       this.closeForm.emit(true);
     } else {
       this.scrollUp();
@@ -174,6 +176,29 @@ export class OrderFormComponent implements OnInit, OnDestroy {
         floor.markAsTouched();
       }
     }
+  }
+
+  createOrder(): void {
+    const order: IOrder = {
+      name: this.name,
+      courier: this.isCourier,
+      phone: this.mobileNumber,
+      payment: this.paymentMethod,
+    };
+
+    if (this.email !== '') order.email = this.email;
+    if (this.isCourier) {
+      order.location = { ...this.address, city: this.city } as ILocation;
+      order.delivery = {
+        date: this.delivery.date,
+        time: this.delivery.time,
+      };
+    }
+
+    if (this.comments !== '') {
+      order.comments = this.comments;
+    }
+    this.deliveryOptions.emit(order);
   }
 
   ngOnDestroy(): void {

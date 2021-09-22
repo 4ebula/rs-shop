@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="reverse">
-      <input type="text" name="email" id="email" [value]="email">
+      <input type="text" name="email" id="email" #emailv (input)="email = emailv.value">
       <label for="email">E-mail:</label>
     </div>
   </fieldset>
@@ -78,7 +78,7 @@
     </div>
 
     <div class="phone reverse">
-      <input type="tel" name="mobileNumber" [pattern]="mobNumberPattern" #mobNumber="ngModel" [ngModel]="mobileNumber"
+      <input type="tel" name="mobileNumber" [pattern]="mobNumberPattern" #mobNumber="ngModel" [(ngModel)]="mobileNumber"
         id="tel" placeholder="+375 29 111 11 11" required>
       <label for="mobileNumber">Телефон</label>
       <div *ngIf="mobNumber.invalid && (mobNumber.dirty || mobNumber.touched)" class="alert">
@@ -88,8 +88,9 @@
     </div>
 
     <div class="comments"><label for="comments">Комментарии:</label>
-      <textarea name="" id="comments" cols="30" rows="10"
-        placeholder="Введите номер и серию сертификата, если таковой имеется."></textarea>
+      <textarea name="" id="comments" cols="30" rows="10" #comment
+        placeholder="Введите номер и серию сертификата, если таковой имеется."
+        (input)="comments = comment.value"></textarea>
     </div>
   </fieldset>
 

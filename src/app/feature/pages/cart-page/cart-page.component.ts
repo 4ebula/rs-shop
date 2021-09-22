@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { CartService } from '@feature/services/cart/cart.service';
 import { ICart } from '@feature/models/cart.model';
+import { IOrder } from '@feature/models/order.model';
 
 @Component({
   selector: 'app-cart-page',
@@ -32,5 +33,13 @@ export class CartPageComponent {
 
   submitOrder(): void {
     this.orderIsReady = true;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  sendOrder(deliveryOptions: IOrder) {
+    console.log(deliveryOptions);
+
+    // TODO: show popup
+    // TODO: empty cart
   }
 }

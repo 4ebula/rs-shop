@@ -4,22 +4,22 @@ export enum Payment {
 }
 
 export interface IOrder {
-  name?: string;
-  email: string;
-  location: {
-    city: string;
-    street: string;
+  name: string;
+  email?: string;
+  location?: {
+    city?: string;
+    street?: string;
     floor?: string;
     entrance?: string;
-    apartment: string;
+    apartment?: string;
   };
   courier: boolean;
   delivery?: {
-    date: string;
-    time: string;
+    date?: string;
+    time?: string;
   };
   phone: string;
-  comments: string;
+  comments?: string;
   payment: Payment;
 }
 
@@ -28,4 +28,12 @@ export interface IAddress {
   apartment: string;
   entrance?: string | null;
   floor?: string | null;
+}
+
+export interface ILocation {
+  city: string;
+  street: string;
+  floor: string;
+  entrance: string;
+  apartment: string;
 }
