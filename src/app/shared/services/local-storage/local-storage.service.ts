@@ -21,4 +21,8 @@ export class LocalStorageService {
     const storageItem = this.storage.getItem(StorageItems.order);
     return storageItem ? JSON.parse(storageItem) : [];
   }
+
+  clearCartOrder(): void {
+    this.storage.removeItem(StorageItems.order);
+  }
 }

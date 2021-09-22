@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { CartService } from '@feature/services/cart/cart.service';
+import { PopupService } from '@shared/services/popup/popup.service';
 import { ICart } from '@feature/models/cart.model';
 import { IOrder } from '@feature/models/order.model';
 
@@ -16,10 +17,9 @@ export class CartPageComponent {
 
   sum: number = 0;
 
-  // SET BACK TO FALSE
-  orderIsReady: boolean = true;
+  orderIsReady: boolean = false;
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private popup: PopupService) {
     this.products = this.cartService.getItems();
   }
 
@@ -35,11 +35,9 @@ export class CartPageComponent {
     this.orderIsReady = true;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   sendOrder(deliveryOptions: IOrder) {
     console.log(deliveryOptions);
-
-    // TODO: show popup
-    // TODO: empty cart
+    this.popup.showPopup('order');
+    this.cartService.epmtyCart();
   }
 }
