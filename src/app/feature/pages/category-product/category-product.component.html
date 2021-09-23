@@ -5,14 +5,14 @@
   <div class="sort"></div>
   <div class="page">
     <div>
-      <button>+</button>
-      <span>Страница</span>
-      <button>+</button>
+      <button (click)="increasePageNumber(false)" [disabled]="currPageNum === 1">&lt;</button>
+      <span>Страница {{ currPageNum }}/{{ maxPage }}</span>
+      <button (click)="increasePageNumber(true)" [disabled]="currPageNum === maxPage">&gt;</button>
     </div>
   </div>
   <div class="products">
     <div class="product" *ngFor="let product of products">
-      <div><img src="{{product.imageUrls[0]}}" alt=""></div>
+      <div><img [src]="getImage(product)" alt=""></div>
       <div>
         <app-product-stock [available]="product.availableAmount"></app-product-stock>
         <div class="product-charactirestics">

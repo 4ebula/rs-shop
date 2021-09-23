@@ -79,7 +79,10 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   getProduct(): void {
     const sub = this.productService.getProduct(this.id).subscribe((response) => {
       this.product = response;
-      [this.currentImage] = response.imageUrls;
+      if (response.imageUrls.length === 0) {
+        this.product.imageUrls = ['./assets/default_preview.jpeg'];
+      }
+      [this.currentImage] = this.product.imageUrls;
       this.isLoaded = Promise.resolve(true);
     });
     this.sub.add(sub);

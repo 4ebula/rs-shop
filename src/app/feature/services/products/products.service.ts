@@ -10,8 +10,10 @@ import { catchError } from 'rxjs/operators';
 export class ProductsService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  getProducts(category: string, subCategory: string): Observable<any> {
-    return this.http.get(`http://localhost:3004/goods/category/${category}/${subCategory}`);
+  getProducts(category: string, subCategory: string, query?: string): Observable<any> {
+    return this.http.get(
+      `http://localhost:3004/goods/category/${category}/${subCategory}${query || ''}`
+    );
   }
 
   getProduct(id: string): Observable<any> {

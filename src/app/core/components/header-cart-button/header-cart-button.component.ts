@@ -23,8 +23,9 @@ export class HeaderCartButtonComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // eslint-disable-next-line no-plusplus
-    this.cartService.cartContent$.subscribe(() => this.amountInCart++);
+    this.cartService.cartAmount$.subscribe((amount) => {
+      this.amountInCart = amount;
+    });
     const sub = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.isActive.next(event.url === '/cart');

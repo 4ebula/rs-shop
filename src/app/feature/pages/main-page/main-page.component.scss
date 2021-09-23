@@ -2,4 +2,8 @@
 
 :host {
   @include mainHost;
+
+  div > * {
+    margin-bottom: 30px;
+  }
 }

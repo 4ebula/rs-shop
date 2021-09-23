@@ -21,7 +21,8 @@
         <div class="checkout"><button (click)="submitOrder()">Оформить заказ</button></div>
       </ng-container>
       <ng-template #orderForm>
-        <app-order-form [total]="sum"></app-order-form>
+        <app-order-form [total]="sum" (closeForm)="orderIsReady = !$event" (deliveryOptions)="sendOrder($event)">
+        </app-order-form>
       </ng-template>
     </div>
     <p class="empty" *ngSwitchDefault>Ваша корзина пуста</p>

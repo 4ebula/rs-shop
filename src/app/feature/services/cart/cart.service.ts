@@ -7,9 +7,9 @@ import { ICart } from '../../models/cart.model';
   providedIn: 'root',
 })
 export class CartService {
-  private cart = new Subject();
+  private cartAmount: Subject<number> = new Subject();
 
-  public cartContent$ = this.cart.asObservable();
+  public cartAmount$ = this.cartAmount.asObservable();
 
   private cartContent: ICart[] = [];
 
@@ -18,8 +18,8 @@ export class CartService {
   }
 
   public addToCart(newProductId: string): void {
-    this.cart.next(newProductId);
     this.cartContent.push({ id: newProductId, amount: 1 });
+    this.cartAmount.next(this.cartContent.length);
     this.storage.setCartOrder(this.cartContent);
   }
 
@@ -40,6 +40,7 @@ export class CartService {
     if (itemNum !== -1) {
       this.cartContent.splice(itemNum, 1);
       this.storage.setCartOrder(this.cartContent);
+      this.cartAmount.next(this.cartContent.length);
     }
   }
 
@@ -55,5 +56,11 @@ export class CartService {
     if (isChanged) {
       this.storage.setCartOrder(this.cartContent);
     }
+  }
+
+  epmtyCart(): void {
+    this.cartContent = [];
+    this.cartAmount.next(0);
+    this.storage.clearCartOrder();
   }
 }

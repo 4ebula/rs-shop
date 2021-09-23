@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
 import { CartService } from '@feature/services/cart/cart.service';
+import { PopupService } from '@shared/services/popup/popup.service';
 import { ICart } from '@feature/models/cart.model';
+import { IOrder } from '@feature/models/order.model';
 
 @Component({
   selector: 'app-cart-page',
@@ -15,10 +17,9 @@ export class CartPageComponent {
 
   sum: number = 0;
 
-  // SET BACK TO FALSE
-  orderIsReady: boolean = true;
+  orderIsReady: boolean = false;
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private popup: PopupService) {
     this.products = this.cartService.getItems();
   }
 
@@ -32,5 +33,11 @@ export class CartPageComponent {
 
   submitOrder(): void {
     this.orderIsReady = true;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  sendOrder(deliveryOptions: IOrder) {
+    this.popup.showPopup('order');
+    this.cartService.epmtyCart();
   }
 }

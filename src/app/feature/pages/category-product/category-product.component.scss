@@ -47,7 +47,17 @@
       outline: none;
       border: none;
       background-color: transparent;
+      @include typography(18, 400, 18, $text-blue);
       @include flexCentered;
+
+      &:hover {
+        color: $hover-text;
+      }
+
+      &[disabled],
+      &[disabled]:hover {
+        color: $text-grey;
+      }
     }
   }
 

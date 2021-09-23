@@ -1,13 +1,19 @@
-<form>
+<form (submit)="submitOrder(inputName, mobNumber)">
 
   <fieldset class="personal-data">
     <legend>Личные данные</legend>
     <div class="reverse">
-      <input type="text" name="personalName" id="personalName">
+      <input type="text" name="personalName" id="personalName" [(ngModel)]="name" minlength="3" maxlength="50"
+        #inputName="ngModel" required>
       <label for="personalName">Имя Фамилия:</label>
+      <div *ngIf="inputName.invalid && (inputName.dirty || inputName.touched)" class="alert">
+        <span *ngIf="inputName.errors?.required">Это поле обязательно к заполнению</span>
+        <span *ngIf="inputName.errors?.minlength">Поле не должно содержать меньше 3 символов</span>
+        <span *ngIf="inputName.errors?.maxlength">Поле не должно содержать больше 50 символов</span>
+      </div>
     </div>
     <div class="reverse">
-      <input type="text" name="email" id="email" required>
+      <input type="text" name="email" id="email" #emailv (input)="email = emailv.value">
       <label for="email">E-mail:</label>
     </div>
   </fieldset>
@@ -16,71 +22,86 @@
     <legend>Доставка</legend>
 
     <div class="reverse">
-      <input type="select" name="city" id="city">
+      <input type="select" name="city" id="city" [(ngModel)]="city">
       <label for="city">Город/населенный пункт:</label>
     </div>
 
     <div class="delivery_options">
       <div>
-        <input type="radio" name="deliveryOption" id="deliveryCourier" checked>
+        <input type="radio" name="deliveryOption" id="deliveryCourier" [checked]="isCourier"
+          (change)="changeDeliveryOption(true)">
         <label for="deliveryCourier">курьером до клинета — 6,00 р.</label>
       </div>
       <div>
-        <input type="radio" name="deliveryOption" id="deliverySelf">
+        <input type="radio" name="deliveryOption" id="deliverySelf" [checked]="!isCourier"
+          (change)="changeDeliveryOption(false)">
         <label for="deliverySelf">самовывоз в Минск — бесплатно</label>
       </div>
     </div>
 
-    <div class="address">
+    <div class="address" *ngIf="isCourier">
       <div class="reverse">
-        <input type="text" name="address" id="address" placeholder="улица, дом" required>
+        <input type="text" name="address" id="address" placeholder="улица, дом" #addressStreet="ngModel"
+          [(ngModel)]="address.street" required>
         <label for="address">Адрес доставки:</label>
+        <div *ngIf="addressStreet.invalid && (addressStreet.dirty || addressStreet.touched)" class="alert">
+          <span *ngIf="addressStreet.errors?.required">Это поле обязательно к заполнению</span>
+        </div>
       </div>
       <div>
-        <input type="text" name="entrance" placeholder="подъезд">
-        <input type="text" name="floor" placeholder="этаж">
-        <input type="text" name="flat" placeholder="квартира" required>
+        <input type="text" name="entrance" placeholder="подъезд" [(ngModel)]="address.entrance">
+        <input type="text" name="floor" placeholder="этаж" [(ngModel)]="address.floor">
+        <input type="text" name="apartment" placeholder="квартира" [(ngModel)]="address.apartment"
+          #addressApartment="ngModel" required>
+        <div *ngIf="addressApartment.invalid && (addressApartment.dirty || addressApartment.touched)" class="alert">
+          <span *ngIf="addressApartment.errors?.required">Это поле обязательно к заполнению</span>
+        </div>
       </div>
     </div>
 
-    <div class="time">
+    <div class="time" *ngIf="isCourier">
       <p>Время доставки</p>
-      <select name="" id="">
+      <select name="" id="" (change)="setDeliveryDate($event)">
         <option value="">Выберите дату</option>
-        <option value="1">thursday, 23 sept</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+        <option *ngFor="let day of deliveryDates; let i = index" [value]="i + 1">{{ day }}</option>
       </select>
-      <select name="" id="" disabled>
+      <div *ngIf="!isDeliveryDateTimeSelected.date" class="alert date">
+        <span>Выберите дату</span>
+      </div>
+      <select name="" id="" (change)="setDeliveryTime($event)" [disabled]="!isDateSelected">
         <option>Выберите время</option>
-        <option>11:00-14:00</option>
-        <option>12:00-15:00</option>
-        <option>13:00-16:00</option>
-        <option>4</option>
+        <option *ngFor="let time of deliveryTime; let i = index" [value]="i + 1">{{ time }}</option>
       </select>
+      <div *ngIf="!isDeliveryDateTimeSelected.time" class="alert alert_time">
+        <span>Выберите время</span>
+      </div>
     </div>
 
     <div class="phone reverse">
-      <input type="tel" name="tel" id="tel" placeholder="+375 29 111 11 11" required>
-      <label for="tel">Телефон</label>
+      <input type="tel" name="mobileNumber" [pattern]="mobNumberPattern" #mobNumber="ngModel" [(ngModel)]="mobileNumber"
+        id="tel" placeholder="+375 29 111 11 11" required>
+      <label for="mobileNumber">Телефон</label>
+      <div *ngIf="mobNumber.invalid && (mobNumber.dirty || mobNumber.touched)" class="alert">
+        <span *ngIf="mobNumber.errors?.required">Это поле обязательно к заполнению</span>
+        <span *ngIf="mobNumber.errors?.pattern">Mobile number not valid.</span>
+      </div>
     </div>
 
     <div class="comments"><label for="comments">Комментарии:</label>
-      <textarea name="" id="comments" cols="30" rows="10"
-        placeholder="Введите номер и серию сертификата, если таковой имеется."></textarea>
+      <textarea name="" id="comments" cols="30" rows="10" #comment
+        placeholder="Введите номер и серию сертификата, если таковой имеется."
+        (input)="comments = comment.value"></textarea>
     </div>
   </fieldset>
 
   <fieldset class="payment">
     <legend>Оплата при получении</legend>
     <div>
-      <input type="radio" name="payment" id="cash" checked>
+      <input type="radio" name="payment" id="cash" (change)="changePaymentMethod(true)" checked>
       <label for="cash">наличными</label>
     </div>
     <div>
-      <input type="radio" name="payment" id="card">
+      <input type="radio" name="payment" id="card" (change)="changePaymentMethod(false)">
       <label for="card">картой</label>
     </div>
   </fieldset>
@@ -88,7 +109,7 @@
   <div class="total">
     <span>Поля, обязательные для заполнения</span>
     <div>
-      <span>Стоимость заказа с доставкой: <span>HERE IS TOLL</span>р.</span>
+      <span>Стоимость заказа с доставкой: <span> {{ total | number: "1.2-2"}} </span> р.</span>
     </div>
     <button class="submit" type="submit">Подтвердить заказ</button>
   </div>
