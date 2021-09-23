@@ -46,3 +46,14 @@
     }
   }
 }
+
+.capability {
+  ul {
+    padding-left: 10px;
+
+    li {
+      list-style-type: disc;
+      @include typography(12, 400, 13);
+    }
+  }
+}
