@@ -1,0 +1,3 @@
+<ng-container (appProductAvailability)="isAvaliable = $event" [amount]="settings.amount">
+  <button [ngClass]="className" (click)="handleClick()">{{ text }}</button>
+</ng-container>

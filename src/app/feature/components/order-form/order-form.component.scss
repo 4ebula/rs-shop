@@ -1,0 +1,231 @@
+@import "../../../../variables.scss";
+
+:host {
+  padding: 50px 0;
+}
+
+form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  width: 100%;
+  row-gap: 48px;
+}
+
+legend {
+  height: 27px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #4d4d4d;
+  @include typography(14, 600, 16, #000);
+}
+
+label {
+  @include typography(12, 400, 14, #000);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="select"] {
+  width: 300px;
+  height: 28px;
+  padding: 3px 6px;
+  margin-top: 9px;
+  margin-bottom: 16px;
+  outline: none;
+  color: #6a5666;
+  border: 1px solid #bebebe;
+  background: #fff;
+  box-shadow: 0px 1px 2px #eee inset;
+
+  &:focus {
+    border-color: #902789;
+  }
+
+  &[required] + label::before {
+    content: "*";
+    color: red;
+    margin-right: 2px;
+  }
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  justify-content: flex-start;
+}
+
+legend {
+  width: 100%;
+}
+
+.reverse {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+}
+
+.address {
+  display: flex;
+  flex-flow: column nowrap;
+
+  & > div:last-of-type {
+    display: flex;
+    position: relative;
+    column-gap: 10px;
+
+    input {
+      width: 15%;
+      flex-basis: 15%;
+    }
+  }
+}
+
+.personal-data {
+  flex-basis: 100%;
+}
+
+.payment,
+.delivery {
+  flex-basis: 45%;
+}
+
+.payment,
+.delivery_options {
+  display: flex;
+  flex-direction: column;
+  @include typography(12, 400, 14, #000);
+  margin-bottom: 10px;
+
+  & > div {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+    input {
+      margin-right: 5px;
+    }
+
+    input:checked + label {
+      font-weight: 700;
+    }
+  }
+}
+
+.address,
+.phone {
+  margin-top: 10px;
+}
+
+.address {
+  margin-bottom: 30px;
+  input {
+    margin-bottom: 0px;
+  }
+}
+
+.time {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+  position: relative;
+  row-gap: 5px;
+  margin-bottom: 16px;
+
+  p {
+    flex-basis: 100%;
+    @include typography(12, 400, 14, #000);
+  }
+
+  select {
+    width: 30%;
+    height: 28px;
+    margin-right: 10px;
+    border: 1px solid #bebebe;
+    background: #fff;
+    outline: none;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 8px;
+    text-overflow: "";
+  }
+}
+
+.phone {
+  margin-bottom: 10px;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+
+  textarea {
+    width: 300px;
+    padding: 3px 6px;
+    resize: none;
+    margin-bottom: 16px;
+    outline: none;
+    color: #6a5666;
+    font-family: "Arial";
+    border: 1px solid #bebebe;
+    background: #fff;
+    box-shadow: 0px 1px 2px #eee inset;
+  }
+}
+
+.total {
+  border-top: 1px solid #d7d7d7;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+
+  & > span {
+    display: block;
+    align-self: flex-start;
+    @include typography(10, 400, 12, #7b7b7b);
+
+    &::before {
+      content: "*";
+      color: red;
+      margin-right: 2px;
+    }
+  }
+  & > div {
+    & > span {
+      color: #434343;
+
+      span {
+        @include typography(20, 400, 14, #000);
+      }
+    }
+  }
+}
+
+.submit {
+  width: 173px;
+  height: 31px;
+  margin-top: 12px;
+  background-color: $text-blue;
+  align-self: flex-end;
+  @include typography(12, 400, 12, #fff, "Tahoma");
+
+  &:hover {
+    background-color: #005b96;
+  }
+}
+
+.alert {
+  position: absolute;
+  top: 54px;
+  @include typography(8, 400, 10, #f00);
+}
+
+.address .alert {
+  top: 52px;
+}
+
+.alert_time {
+  left: 32%;
+}

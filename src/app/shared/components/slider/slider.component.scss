@@ -1,0 +1,203 @@
+@import "../../../../variables.scss";
+
+:host {
+  display: block;
+  position: relative;
+  width: 722px;
+  box-sizing: border-box;
+  margin: 0;
+  overflow-x: hidden;
+
+  & > div {
+    position: relative;
+  }
+
+  .padding {
+    padding: 0 11px;
+  }
+
+  .border {
+    border: 1px solid #e2e2e2;
+  }
+
+  .default.slider {
+    display: flex;
+    width: fit-content;
+    transition-property: margin-left;
+    transition-timing-function: ease-in-out;
+
+    & > div {
+      width: 720px;
+      height: 360px;
+      background-size: cover;
+    }
+  }
+
+  .default .slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .default + .switcher {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    box-sizing: border-box;
+    width: 196px;
+    height: 51px;
+    padding: 18px;
+
+    ul {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #1a1a1a4a;
+    }
+    ul > li {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #ccc;
+      margin: 0 4px;
+      cursor: pointer;
+    }
+  }
+
+  .slider.product {
+    display: flex;
+    width: fit-content;
+    height: 300px;
+  }
+
+  .product {
+    transition-property: left;
+    transition-timing-function: ease-in-out;
+
+    div {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .slide {
+      position: relative;
+      transition-property: left;
+      transition-timing-function: ease-in-out;
+      transition-duration: 700ms;
+      width: 720px;
+      padding: 0 11px;
+    }
+
+    &_item {
+      width: 33.3%;
+      height: 134px;
+      display: flex;
+      position: relative;
+      align-items: center;
+    }
+
+    &_image {
+      width: 25%;
+
+      img {
+        width: 100%;
+        height: 50%;
+        object-fit: contain;
+      }
+    }
+
+    &_info {
+      width: 75%;
+      display: flex;
+      flex-direction: column;
+      padding: 5px 11px;
+
+      a {
+        @include typography(12, 400, 14, $text-blue);
+
+        &:hover {
+          color: #bc1242;
+        }
+      }
+    }
+
+    &_info > *:nth-child(2) {
+      transform: scale(0.7);
+      left: -9%;
+    }
+
+    &_price {
+      @include typography(14, 400, 16);
+    }
+
+    &_label {
+      position: absolute;
+      width: 28px;
+      height: 32px;
+      top: 8%;
+      left: 16%;
+      background: {
+        image: url("../../../../assets/labels.png");
+        repeat: no-repeat;
+        position: -60px -90px;
+      }
+    }
+
+    &_controls {
+      position: absolute;
+      z-index: 50;
+      width: 11px;
+      height: 29px;
+      top: 49%;
+      background: {
+        image: url("../../../../assets/arrows.png");
+        repeat: no-repeat;
+      }
+      cursor: pointer;
+
+      &.left {
+        left: 0;
+        background-position: -24px;
+
+        &:hover {
+          background-position: 0px;
+        }
+
+        &.disabled,
+        &.disabled:hover {
+          background-position: -49px;
+        }
+      }
+
+      &.right {
+        right: 0;
+        background-position: -109px;
+
+        &:hover {
+          background-position: -133px;
+        }
+
+        &.disabled,
+        &.disabled:hover {
+          background-position: -85px;
+        }
+      }
+    }
+  }
+}
