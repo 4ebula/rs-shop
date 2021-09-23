@@ -1,162 +1,63 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { from, Subscription } from 'rxjs';
+import { concatAll, map } from 'rxjs/operators';
+
+import { ProductsService } from '@feature/services/products/products.service';
+import { IProduct } from '@feature/models/product.model';
 import { ISliderProduct } from '@shared/models/slider.model';
+import { PRODUCT_SALES_IDS } from '@feature/utility/product-on-sales';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
-export class MainPageComponent {
-  productSliderInfo: Array<ISliderProduct>[] = [
-    [
-      {
-        id: '612fe4ecbe8833c5e72318e6',
-        name: "Ноутбук Apple MacBook Pro 13' M1 2020 256GB / MYD82 (серый космос)",
-        img: 'https://cdn21vek.by/img/galleries/6268/637/preview_b/macbookpro13m12020256gbmyd82_apple_5fbe5e5edf498.jpeg',
-        rating: 5,
-        price: 9196,
-        category: 'laptops',
+export class MainPageComponent implements OnDestroy {
+  productSliderInfo!: Array<ISliderProduct>[];
+
+  readonly porductOnSales: string[] = PRODUCT_SALES_IDS;
+
+  isLoaded!: Promise<boolean>;
+
+  sub: Subscription = new Subscription();
+
+  constructor(private productServ: ProductsService) {
+    this.createInfoForSlider();
+  }
+
+  createInfoForSlider(): void {
+    const sliderObserable = from(this.porductOnSales).pipe(
+      map((id) => this.productServ.getProduct(id)),
+      concatAll()
+    );
+    const sliderInfo: ISliderProduct[] = [];
+
+    const sub = sliderObserable.subscribe({
+      next: (res: IProduct) => {
+        sliderInfo.push(this.transofmInfo(res));
       },
-      {
-        id: '612e92b2d35930c90eeb4736',
-        name: 'Портативное зарядное устройство Xiaomi Redmi Power Bank 10000mAh / VXN4305GL (черный)',
-        img: 'https://cdn21vek.by/img/galleries/5967/968/preview_b/redmipowerbank10000mahvxn4305gl_xiaomi_5ecfd0ccda9a0.jpeg',
-        rating: 2,
-        price: 44.31,
-        category: 'powerbanks',
+      complete: () => {
+        this.productSliderInfo = [sliderInfo.splice(0, 6), sliderInfo.splice(0, 6), sliderInfo];
+        this.isLoaded = Promise.resolve(true);
       },
-      {
-        id: '612dc77a248d62e0c95929a7',
-        name: 'Пылесос Samsung SC18M31A0HU/EV / VC18M31A0HU/EV',
-        img: 'https://cdn21vek.by/img/galleries/450/918/preview_b/sc18m31a0huevvc18m31a0huev_samsung_590da19e1c749.jpeg',
-        rating: 1,
-        price: 348.51,
-        category: 'vacuum',
-      },
-      {
-        id: '613323740bb061e555b21fb1',
-        name: 'Клавиатура Logitech K270 / 920-003757',
-        img: 'https://cdn21vek.by/img/galleries/15/284/preview_b/logitech_wirelesskeyboardk270blackusb_5c8b6936d4937.png',
-        rating: 4,
-        price: 366.89,
-        category: 'peripherals',
-      },
-      {
-        id: '61345c670edc74c4d34d43ff',
-        name: 'Стул Mio Tesoro Роза DC-048 (белый/хром)',
-        img: 'https://cdn21vek.by/img/galleries/434/36/preview_b/dc048_mio_tesoro_02_5dc9dbade97fe.jpeg',
-        rating: 0,
-        price: 81,
-        category: 'chairs',
-      },
-      {
-        id: '6131436beabccac2d15634be',
-        name: 'Бокс для жесткого диска Gembird EE2-U2S-5',
-        img: 'https://cdn21vek.by/img/galleries/481/608/preview_b/ee2u2s5_gembird_59d627836a25b.jpeg',
-        rating: 3,
-        price: 127.39,
-        category: 'hardware',
-      },
-    ],
-    [
-      {
-        id: '613466eca4a0a27f2f64612b',
-        name: 'Акустическая гитара Cort AD 810 BKS',
-        img: 'https://cdn21vek.by/img/galleries/5853/36/preview_b/ad810bks_cort_5e18841cd0c7b.jpeg',
-        rating: 2,
-        price: 981,
-        category: 'music-instruments',
-      },
-      {
-        id: '6134630cb62e983d6ae9515a',
-        name: 'Односпальная кровать Интерлиния Анеси-3 (дуб венге)',
-        img: 'https://cdn21vek.by/img/galleries/1022/16/preview_b/3_interliniya_013_5ce7fffff3514.jpeg',
-        rating: 0,
-        price: 310,
-        category: 'beds',
-      },
-      {
-        id: '6134604ae56f0bb877ed086c',
-        name: 'Обеденный стол Алмаз-Люкс СО-Д-02-20',
-        img: 'https://cdn21vek.by/img/galleries/623/990/preview_b/0220_almaz_luks_5b4dfce0964eb.jpeg',
-        rating: 3,
-        price: 138,
-        category: 'tables',
-      },
-      {
-        id: '612e849021a4f82ba01beeb5',
-        name: 'Планшет Prestigio Wize 4117 3G / PMT4117_3G_C (черный)',
-        img: 'https://cdn21vek.by/img/galleries/5793/884/preview_b/wize41173gpmt41173gc_prestigio_5dd7c686bb070.png',
-        rating: 1,
-        price: 976.47,
-        category: 'tablets',
-      },
-      {
-        id: '612d4059b70b1637447b515e',
-        name: 'Морозильник Indesit DSZ 5175',
-        img: 'https://cdn21vek.by/img/galleries/919/943/preview_b/dsz5175_indesit_5ce79a230d1b1.jpeg',
-        rating: 3,
-        price: 1346,
-        category: 'freezers',
-      },
-      {
-        id: '612e8c38018ca8ec5a446b78',
-        name: 'Электронная книга Amazon Kindle Paperwhite (8Gb, слива)',
-        img: 'https://cdn21vek.by/img/galleries/6400/69/preview_b/kindlepaperwhite_amazon_06_6033d351d0ce6.jpeg',
-        rating: 3,
-        price: 564.33,
-        category: 'ebooks',
-      },
-    ],
-    [
-      {
-        id: '61346a5eb24bba0560183b56',
-        name: 'Книга Попурри У меня растет сын! Как воспитать настоящего мужчину (Грант Я.)',
-        img: 'https://cdn21vek.by/img/galleries/6062/552/preview_b/popuri_037_5f368414203a4.jpeg',
-        rating: 4,
-        price: 36.71,
-        category: 'books',
-      },
-      {
-        id: '61332374cda4df034af45c60',
-        name: 'Мышь Logitech M310 / 910-003986',
-        img: 'https://cdn21vek.by/img/galleries/469/203/preview_b/m310910003986_logitech_598344f8541b8.jpeg',
-        rating: 0,
-        price: 264.91,
-        category: 'peripherals',
-      },
-      {
-        id: '6131436be06f4b007c239910',
-        name: 'SSD диск Samsung 870 Evo 500Gb (MZ-77E500)',
-        img: 'https://cdn21vek.by/img/galleries/6360/998/preview_b/870evo500gbmz77e500_samsung_60193433cfeb5.jpeg',
-        rating: 4,
-        price: 134.21,
-        category: 'hardware',
-      },
-      {
-        id: '61313ca6ae8d912ed787b97f',
-        name: 'Видеокарта XFX RX 580 (RX-580P8DFD6)',
-        img: 'https://cdn21vek.by/img/galleries/1128/306/preview_b/rx580rx580p8dfd6_xfx_5d48282fc5012.jpeg',
-        rating: 2,
-        price: 1856.89,
-        category: 'hardware',
-      },
-      {
-        id: '612fca7237ba93b39964de64',
-        name: 'Видеокамера Sony ZV-1 / ZV1W.CE3',
-        img: 'https://cdn21vek.by/img/galleries/6275/394/preview_b/zv1zv1wce3_sony_5fbe0ee7881a0.jpeg',
-        rating: 5,
-        price: 2767.1,
-        category: 'cameras',
-      },
-      {
-        id: '612d47b28c6d552b4144b886',
-        name: 'Электрочайник Kitfort KT-640-2 (сиреневый)',
-        img: 'https://cdn21vek.by/img/galleries/691/364/preview_b/kt6402_kitfort_5c1b4a37b783c.jpeg',
-        rating: 1,
-        price: 100,
-        category: 'teapots',
-      },
-    ],
-  ];
+    });
+
+    this.sub.add(sub);
+  }
+
+  transofmInfo = (obj: IProduct): ISliderProduct => {
+    const { subCategory, rating, price, id, name, imageUrls } = obj;
+    return {
+      id,
+      name,
+      rating,
+      price,
+      img: imageUrls.length ? imageUrls[0] : './assets/default_preview.jpeg',
+      category: subCategory,
+    };
+  };
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 }

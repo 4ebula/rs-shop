@@ -1,5 +1,5 @@
 <div>
   <app-slider [settings]="{ slidesAmount: 10 }" [name]="'default'"></app-slider>
-  <app-slider [settings]="{ endless: false, automated: false, slidesAmount: 3 }" [sliderInfo]="productSliderInfo"
-    [name]="'product'"></app-slider>
+  <app-slider *ngIf="isLoaded | async" [settings]="{ endless: false, automated: false, slidesAmount: 3 }"
+    [sliderInfo]="productSliderInfo" [name]="'product'"></app-slider>
 </div>
