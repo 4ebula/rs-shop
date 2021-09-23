@@ -6,4 +6,43 @@
   div > * {
     margin-bottom: 30px;
   }
+
+  h3 {
+    @include typography(14, 700, 16, #000);
+    margin: 16px 0;
+  }
+}
+
+.popular {
+  margin-top: 25px;
+}
+
+.advantages {
+  border-top: $border;
+
+  ul {
+    display: flex;
+    flex-flow: column wrap;
+    width: 760px;
+    height: 350px;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      width: 360px;
+
+      div:last-child {
+        margin-left: 10px;
+      }
+
+      h5 {
+        @include typography(14, 400, 16, #000);
+        margin-bottom: 6px;
+      }
+
+      p {
+        @include typography(11, 400, 13);
+      }
+    }
+  }
 }

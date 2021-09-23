@@ -6,6 +6,8 @@ import { ProductsService } from '@feature/services/products/products.service';
 import { IProduct } from '@feature/models/product.model';
 import { ISliderProduct } from '@shared/models/slider.model';
 import { PRODUCT_SALES_IDS } from '@feature/utility/product-on-sales';
+import { IAdvantages } from '@feature/models/advantages.model';
+import { ADVANTAGES_DESCRIOTION } from '@feature/utility/advantages';
 
 @Component({
   selector: 'app-main-page',
@@ -16,6 +18,8 @@ export class MainPageComponent implements OnDestroy {
   productSliderInfo!: Array<ISliderProduct>[];
 
   readonly porductOnSales: string[] = PRODUCT_SALES_IDS;
+
+  advantages: IAdvantages[] = ADVANTAGES_DESCRIOTION;
 
   isLoaded!: Promise<boolean>;
 

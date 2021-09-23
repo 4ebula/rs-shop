@@ -1,5 +1,18 @@
 <div>
   <app-slider [settings]="{ slidesAmount: 10 }" [name]="'default'"></app-slider>
+  <h3 class="popular">Популярные товары</h3>
   <app-slider *ngIf="isLoaded | async" [settings]="{ endless: false, automated: false, slidesAmount: 3 }"
     [sliderInfo]="productSliderInfo" [name]="'product'"></app-slider>
+  <div class="advantages">
+    <h3>Наши преимущества</h3>
+    <ul>
+      <li *ngFor="let advantage of advantages">
+        <div><img src="./assets/images/{{ advantage.img }}" alt=""></div>
+        <div>
+          <h5>{{ advantage.header }}</h5>
+          <p>{{ advantage.content }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
