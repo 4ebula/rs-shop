@@ -5,9 +5,9 @@
   <div class="sort"></div>
   <div class="page">
     <div>
-      <button>+</button>
-      <span>Страница</span>
-      <button>+</button>
+      <button (click)="increasePageNumber(false)" [disabled]="currPageNum === 1">&lt;</button>
+      <span>Страница {{ currPageNum }}/{{ maxPage }}</span>
+      <button (click)="increasePageNumber(true)" [disabled]="currPageNum === maxPage">&gt;</button>
     </div>
   </div>
   <div class="products">

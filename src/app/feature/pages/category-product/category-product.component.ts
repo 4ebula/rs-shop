@@ -22,6 +22,14 @@ export class CategoryProductComponent implements OnInit, OnDestroy {
 
   products!: IProduct[];
 
+  itemsAmount!: number;
+
+  currPageNum: number = 1;
+
+  maxPage!: number;
+
+  readonly itemsPerPage = 5;
+
   sub: Subscription = new Subscription();
 
   constructor(
@@ -47,19 +55,36 @@ export class CategoryProductComponent implements OnInit, OnDestroy {
         (el: ISubCategories) => el.id === data.subCategory
       ) as ISubCategories;
       this.category = category;
-      this.getGoods();
+      this.getAmount();
     });
     this.sub.add(sub);
   }
 
-  getGoods(): void {
+  getAmount(): void {
     const sub = this.productService
       .getProducts(this.topCategory.id, this.category.id)
+      .subscribe((response) => {
+        this.itemsAmount = response.length;
+        this.maxPage = this.calculateAmountOfPages();
+        this.getGoods();
+      });
+    this.sub.add(sub);
+  }
+
+  getGoods(): void {
+    const query = `?start=${this.itemsPerPage * (this.currPageNum - 1)}&count=${this.itemsPerPage}`;
+    const sub = this.productService
+      .getProducts(this.topCategory.id, this.category.id, query)
       .subscribe((response) => {
         this.products = response;
         this.isLoaded = Promise.resolve(true);
       });
     this.sub.add(sub);
+  }
+
+  increasePageNumber(isPageNumIncrease: boolean) {
+    this.currPageNum += isPageNumIncrease ? 1 : -1;
+    this.getGoods();
   }
 
   generatePaths = (): IBreadcrumbs[] => {
@@ -76,4 +101,8 @@ export class CategoryProductComponent implements OnInit, OnDestroy {
   getImage = (product: IProduct): string => {
     return product.imageUrls.length === 0 ? './assets/default_preview.jpeg' : product.imageUrls[0];
   };
+
+  calculateAmountOfPages(): number {
+    return Math.ceil((this.itemsAmount + 1) / this.itemsPerPage);
+  }
 }
