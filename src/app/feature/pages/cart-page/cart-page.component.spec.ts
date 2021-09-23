@@ -5,7 +5,6 @@ import { CartService } from '@feature/services/cart/cart.service';
 
 import { CartPageComponent } from './cart-page.component';
 
-// const amountInCart: number = 0;
 let cartContent: ICart[] = [];
 
 const cartServTest: Partial<CartService> = {
