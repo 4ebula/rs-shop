@@ -7,6 +7,7 @@ import { CategoryService } from '@core/services/category/category.service';
 import { IBreadcrumbs } from '@feature/models/breadcrumbs.model';
 import { IProduct } from '@feature/models/product.model';
 import { ProductsService } from '@feature/services/products/products.service';
+import { PRODUCT_SALES_IDS } from '../../utility/product-on-sales';
 
 enum SwitchButtons {
   'review',
@@ -35,6 +36,12 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   currentImage!: string;
 
   activeButton: SwitchButtons = 0;
+
+  labels = {
+    hasLabel: false,
+    onSale: false,
+    topRated: false,
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -83,6 +90,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
         this.product.imageUrls = ['./assets/default_preview.jpeg'];
       }
       [this.currentImage] = this.product.imageUrls;
+      this.setLabels();
       this.isLoaded = Promise.resolve(true);
     });
     this.sub.add(sub);
@@ -93,6 +101,23 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       { path: this.topCategory.id, name: this.topCategory.name },
       { path: this.category.id, name: this.category.name },
     ];
+  }
+
+  setLabels(): void {
+    const onSales = PRODUCT_SALES_IDS.find((id) => this.id === id);
+
+    switch (true) {
+      case !!onSales:
+        this.labels.hasLabel = true;
+        this.labels.onSale = true;
+        break;
+      case this.product.rating === 5:
+        this.labels.hasLabel = true;
+        this.labels.topRated = true;
+        break;
+      default:
+        break;
+    }
   }
 
   hadleSwitchbutton(num: number): void {

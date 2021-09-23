@@ -18,6 +18,29 @@
 
 .details {
   display: flex;
+  position: relative;
+}
+
+.label {
+  position: absolute;
+  top: 6%;
+  left: 38%;
+  background: {
+    image: url("../../../../assets/labels.png");
+    repeat: no-repeat;
+  }
+}
+
+.rated {
+  width: 80px;
+  height: 70px;
+  background-position: -136px 0px;
+}
+
+.sales {
+  width: 62px;
+  height: 60px;
+  background-position: 0px 0px;
 }
 
 .gallery {

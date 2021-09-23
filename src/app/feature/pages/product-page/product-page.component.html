@@ -8,9 +8,9 @@
         <div *ngFor="let img of product.imageUrls" (click)="changeImage(img)"><img [src]="img"></div>
       </div>
       <div class="current-image"><img [src]="currentImage" alt=""></div>
+      <div *ngIf="labels.hasLabel" class="label" [ngClass]="{'sales': labels.onSale, 'rated': labels.topRated}"></div>
       <app-product-price [product]="product" [isInProduct]="true"></app-product-price>
     </div>
-    <div class="description"></div>
   </div>
   <div class="description">
     <div class="description_buttons">

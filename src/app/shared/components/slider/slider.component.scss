@@ -4,7 +4,6 @@
   display: block;
   position: relative;
   width: 722px;
-  // height: 362px;
   box-sizing: border-box;
   margin: 0;
   overflow-x: hidden;
@@ -140,6 +139,7 @@
 
     &_info > *:nth-child(2) {
       transform: scale(0.7);
+      left: -9%;
     }
 
     &_price {

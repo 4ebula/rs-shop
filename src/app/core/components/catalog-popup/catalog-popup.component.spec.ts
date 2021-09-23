@@ -1,9 +1,8 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Directive, HostListener, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { CategoryService } from '@core/services/category/category.service';
 import { BehaviorSubject } from 'rxjs';
 
+import { CategoryService } from '@core/services/category/category.service';
 import { CatalogPopupComponent } from './catalog-popup.component';
 
 const mockedCategories = [
@@ -25,6 +24,20 @@ const mockedCategories = [
   },
 ];
 
+@Directive({
+  selector: '[routerLink]',
+})
+export class StubRouterLinkDirective {
+  @Input('routerLink') linkParams: any;
+
+  navigatedTo: any = null;
+
+  @HostListener('click')
+  onClick() {
+    this.navigatedTo = this.linkParams;
+  }
+}
+
 describe('CatalogPopupComponent', () => {
   let component: CatalogPopupComponent;
   let fixture: ComponentFixture<CatalogPopupComponent>;
@@ -34,8 +47,8 @@ describe('CatalogPopupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CatalogPopupComponent],
-      providers: [{ provide: CategoryService, useValue: catServTest }, RouterTestingModule],
+      declarations: [CatalogPopupComponent, StubRouterLinkDirective],
+      providers: [{ provide: CategoryService, useValue: catServTest }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
