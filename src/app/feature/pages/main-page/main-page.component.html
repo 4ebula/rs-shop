@@ -1,9 +1,9 @@
 <div>
-  <app-slider [settings]="{ slidesAmount: 10 }" [name]="'default'"></app-slider>
+  <app-slider [settings]="{ slidesAmount: 5 }" [name]="'default'"></app-slider>
   <h3 class="popular">Популярные товары</h3>
   <app-slider *ngIf="isLoaded | async" [settings]="{ endless: false, automated: false, slidesAmount: 3 }"
     [sliderInfo]="productSliderInfo" [name]="'product'"></app-slider>
-  <div class="advantages">
+  <!-- <div class="advantages">
     <h3>Наши преимущества</h3>
     <ul>
       <li *ngFor="let advantage of advantages">
@@ -14,21 +14,5 @@
         </div>
       </li>
     </ul>
-  </div>
-  <div class="capability">
-    <h3>Возможности:</h3>
-    <ul>
-      <li>Автоматический рекламный слайдер с возможностью выбора слайда</li>
-      <li>Слайдер с акционными товарами</li>
-      <li>Просмотр категорий и товаров</li>
-      <li>Постраничная загрузка товаров</li>
-      <li>Просмотр изображений товара</li>
-      <li>Добавление товаров в корзину</li>
-      <li>Удаление товаров из корзины, изменение количества</li>
-      <li>Отправка заказа с выбором спобоба доставки и оплаты</li>
-    </ul>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/879MxcCPkCs" title="YouTube video player"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-  </div>
+  </div> -->
 </div>
