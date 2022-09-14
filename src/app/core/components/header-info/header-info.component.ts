@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 import { GeoService } from '@core/services/geo/geo.service';
 import { PopupService } from '@shared/services/popup/popup.service';
@@ -13,7 +13,13 @@ export class HeaderInfoComponent {
 
   currentLocation = this.geoServices.geo$;
 
-  constructor(private popupService: PopupService, private geoServices: GeoService) {}
+  constructor(
+    private popupService: PopupService,
+    private geoServices: GeoService,
+    private elRef: ElementRef
+  ) {
+    console.log(this.elRef.nativeElement);
+  }
 
   openDropdown(): void {
     this.isOpened = !this.isOpened;
